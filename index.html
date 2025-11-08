@@ -9,13 +9,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script>
       // Function to set theme immediately based on preference or system
       (function initializeTheme() {
         const html = document.documentElement;
         const savedTheme = localStorage.getItem("theme");
-        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
 
         // Apply theme without relying on DOMContentLoaded for a smooth initial load
         if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
@@ -33,8 +35,8 @@
 
         // Check if elements exist before proceeding
         if (!themeToggle || !themeIcon) {
-            console.error("Theme toggle button or icon not found.");
-            return;
+          console.error("Theme toggle button or icon not found.");
+          return;
         }
 
         // Function to update icon and localStorage (called after initialization)
@@ -49,8 +51,8 @@
         };
 
         // Set the initial icon state based on the already-applied theme class
-        updateIconAndStorage(html.classList.contains('dark'));
-        
+        updateIconAndStorage(html.classList.contains("dark"));
+
         // Toggle theme on button click
         themeToggle.addEventListener("click", () => {
           const isDark = html.classList.toggle("dark"); // Toggle the class and get the new state
@@ -63,7 +65,9 @@
           .addEventListener("change", (e) => {
             if (!localStorage.getItem("theme")) {
               const isDark = e.matches;
-              isDark ? html.classList.add("dark") : html.classList.remove("dark");
+              isDark
+                ? html.classList.add("dark")
+                : html.classList.remove("dark");
               updateIconAndStorage(isDark);
             }
           });
