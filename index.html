@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Theme Toggle</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 min-h-screen">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 min-h-screen"
+  >
     <div class="container mx-auto px-4 py-8 max-w-3xl">
-        <header class="flex justify-between items-center mb-8">
-            <div>
-                <h1 class="text-3xl font-bold">Theme Switcher</h1>
-                <p class="text-gray-600 dark:text-gray-400">Toggle between dark and light mode</p>
-            </div>
-            <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle-btn">
-                <i id="theme-icon" class="fas fa-moon"></i>
-            </button>
-        </header>
+      <header class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-bold">Theme Switcher</h1>
+          <p class="text-gray-600 dark:text-gray-400">
+            Toggle between dark and light mode
+          </p>
+        </div>
+        <button
+          id="theme-toggle"
+          aria-label="Toggle theme"
+          class="theme-toggle-btn"
+        >
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+      </header>
 
-        <main>
-            <section class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6">
-                <h2 class="text-2xl font-semibold mb-4">Demo Content</h2>
-                <p class="mb-4 text-gray-700 dark:text-gray-300">This theme switcher:</p>
-                <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-                    <li>Saves your preference using localStorage</li>
-                    <li>Respects your system color scheme</li>
-                    <li>Works on all devices</li>
-                    <li>Has smooth transitions</li>
-                </ul>
-            </section>
+      <main>
+        <section
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6"
+        >
+          <h2 class="text-2xl font-semibold mb-4">Demo Content</h2>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">
+            This theme switcher:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+            <li>Saves your preference using localStorage</li>
+            <li>Respects your system color scheme</li>
+            <li>Works on all devices</li>
+            <li>Has smooth transitions</li>
+          </ul>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                    <h3 class="font-medium mb-3">Card Example</h3>
-                    <p class="text-gray-700 dark:text-gray-300">This card adapts to the current theme.</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                    <h3 class="font-medium mb-3">Another Card</h3>
-                    <p class="text-gray-700 dark:text-gray-300">All elements respond to theme changes.</p>
-                </div>
-            </div>
-        </main>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h3 class="font-medium mb-3">Card Example</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              This card adapts to the current theme.
+            </p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h3 class="font-medium mb-3">Another Card</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              All elements respond to theme changes.
+            </p>
+          </div>
+        </div>
+      </main>
 
-        <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
-            <p class="text-gray-600 dark:text-gray-400">© 2025 Theme Toggle Demo</p>
-        </footer>
+      <footer
+        class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center"
+      >
+        <p class="text-gray-600 dark:text-gray-400">© 2025 Theme Toggle Demo</p>
+      </footer>
     </div>
 
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
