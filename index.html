@@ -3,16 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Theme Toggle (Tailwind)</title>
+    <title>Theme Toggle (Variable State)</title>
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-      /* --- Custom CSS kept only for global transitions and animation --- */
-
-      /* Base transitions (essential for smooth theme change) */
       html {
         transition: background-color 0.3s ease, color 0.3s ease;
       }
@@ -22,8 +20,7 @@
         transition: transform 0.3s ease;
       }
 
-      /* Tailwind JIT/Arbitrary value can handle this, but keeping here for simplicity: */
-      /* Note: In a real project, this would be a custom utility class. */
+      /* Hover animation for icon */
       #theme-toggle:hover #theme-icon {
         transform: scale(1.1);
       }
@@ -40,60 +37,40 @@
         }
       }
     </style>
+    
+    <!-- 1. FOUC PREVENTION SCRIPT: Minimal script runs immediately to set the 'dark' class -->
     <script>
-      // Function to set theme immediately based on preference or system
-      (function initializeTheme() {
-        const html = document.documentElement;
-        const savedTheme = localStorage.getItem("theme");
-        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        // Apply theme without relying on DOMContentLoaded for a smooth initial load
-        if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
-          html.classList.add("dark");
-        } else {
-          html.classList.remove("dark");
-        }
-      })();
-
-      // Wait for the full page load to attach the click listener
-      document.addEventListener("DOMContentLoaded", () => {
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = document.getElementById("theme-icon");
-        const html = document.documentElement;
-
-        if (!themeToggle || !themeIcon) return;
-
-        // Function to update icon and localStorage (called after initialization)
-        const updateIconAndStorage = (isDark) => {
-          if (isDark) {
-            themeIcon.className = "fas fa-sun"; // Show sun when dark (to switch to light)
-            localStorage.setItem("theme", "dark");
-          } else {
-            themeIcon.className = "fas fa-moon"; // Show moon when light (to switch to dark)
-            localStorage.setItem("theme", "light");
+      (function initializeThemeClass() {
+        // Configuration object - centralized theme management
+        const ThemeConfig = {
+          STORAGE_KEY: 'theme',
+          CLASS_NAME: 'dark',
+          THEMES: {
+            DARK: 'dark',
+            LIGHT: 'light'
+          },
+          ICONS: {
+            DARK: 'fas fa-sun',
+            LIGHT: 'fas fa-moon'
           }
         };
 
-        // Set the initial icon state based on the already-applied theme class
-        updateIconAndStorage(html.classList.contains('dark'));
-        
-        // Toggle theme on button click
-        themeToggle.addEventListener("click", () => {
-          const isDark = html.classList.toggle("dark"); // Toggle the class and get the new state
-          updateIconAndStorage(isDark);
-        });
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-        // Watch for system theme changes (if no localStorage preference set)
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .addEventListener("change", (e) => {
-            if (!localStorage.getItem("theme")) {
-              const isDark = e.matches;
-              isDark ? html.classList.add("dark") : html.classList.remove("dark");
-              updateIconAndStorage(isDark);
-            }
-          });
-      });
+        // Determine initial theme
+        const initialTheme = savedTheme === ThemeConfig.THEMES.DARK || 
+                            (!savedTheme && systemPrefersDark) ? 
+                            ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
+
+        // Apply initial theme
+        if (initialTheme === ThemeConfig.THEMES.DARK) {
+          html.classList.add(ThemeConfig.CLASS_NAME);
+        } else {
+          html.classList.remove(ThemeConfig.CLASS_NAME);
+        }
+      })();
     </script>
   </head>
   <body
@@ -102,9 +79,9 @@
     <div class="container mx-auto px-4 py-8 max-w-3xl">
       <header class="flex justify-between items-center mb-8">
         <div>
-          <h1 class="text-3xl font-bold">Theme Switcher (Tailwind)</h1>
+          <h1 class="text-3xl font-bold">Theme Switcher (Variable State)</h1>
           <p class="text-gray-600 dark:text-gray-400">
-            Toggle between dark and light mode
+            Managed by a central JavaScript variable
           </p>
         </div>
         <button
@@ -125,9 +102,10 @@
             This theme switcher:
           </p>
           <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-            <li>Saves your preference using **localStorage**</li>
-            <li>Respects your system color scheme via **`matchMedia`**</li>
-            <li>Works on all devices and has smooth **transitions**</li>
+            <li>Uses a **centralized configuration object** to maintain state.</li>
+            <li>Saves your preference using **localStorage**.</li>
+            <li>Respects your system color scheme.</li>
+            <li>Fully responsive across all devices.</li>
           </ul>
         </section>
 
@@ -145,6 +123,25 @@
             </p>
           </div>
         </div>
+
+        <!-- Additional responsive content -->
+        <section class="mt-8 bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6">
+          <h2 class="text-2xl font-semibold mb-4">Responsive Features</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <i class="fas fa-mobile-alt text-2xl mb-2 text-blue-500"></i>
+              <p class="text-sm">Mobile First</p>
+            </div>
+            <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <i class="fas fa-tablet-alt text-2xl mb-2 text-green-500"></i>
+              <p class="text-sm">Tablet Optimized</p>
+            </div>
+            <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <i class="fas fa-desktop text-2xl mb-2 text-purple-500"></i>
+              <p class="text-sm">Desktop Ready</p>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer
@@ -153,5 +150,109 @@
         <p class="text-gray-600 dark:text-gray-400">© 2025 Theme Toggle Demo</p>
       </footer>
     </div>
+
+    <!-- 2. MAIN SCRIPT: Handles event listeners and state management -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Centralized Theme Configuration Object
+        const ThemeConfig = {
+          STORAGE_KEY: 'theme',
+          CLASS_NAME: 'dark',
+          THEMES: {
+            DARK: 'dark',
+            LIGHT: 'light'
+          },
+          ICONS: {
+            DARK: 'fas fa-sun',
+            LIGHT: 'fas fa-moon'
+          },
+          ELEMENTS: {
+            themeToggle: document.getElementById("theme-toggle"),
+            themeIcon: document.getElementById("theme-icon"),
+            html: document.documentElement
+          }
+        };
+
+        const { themeToggle, themeIcon, html } = ThemeConfig.ELEMENTS;
+
+        if (!themeToggle || !themeIcon) return;
+        
+        // Theme State Manager
+        const ThemeManager = {
+          currentTheme: html.classList.contains(ThemeConfig.CLASS_NAME) ? 
+                       ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT,
+          
+          // Get system preference
+          getSystemPreference() {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? 
+                   ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
+          },
+          
+          // Apply theme to all components
+          applyTheme(theme) {
+            this.currentTheme = theme;
+            
+            if (theme === ThemeConfig.THEMES.DARK) {
+              html.classList.add(ThemeConfig.CLASS_NAME);
+              themeIcon.className = ThemeConfig.ICONS.DARK;
+            } else {
+              html.classList.remove(ThemeConfig.CLASS_NAME);
+              themeIcon.className = ThemeConfig.ICONS.LIGHT;
+            }
+            
+            localStorage.setItem(ThemeConfig.STORAGE_KEY, theme);
+          },
+          
+          // Toggle between themes
+          toggleTheme() {
+            const newTheme = this.currentTheme === ThemeConfig.THEMES.DARK ? 
+                           ThemeConfig.THEMES.LIGHT : ThemeConfig.THEMES.DARK;
+            this.applyTheme(newTheme);
+          },
+          
+          // Initialize theme manager
+          init() {
+            const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
+            
+            if (savedTheme) {
+              this.applyTheme(savedTheme);
+            } else {
+              this.applyTheme(this.getSystemPreference());
+            }
+          }
+        };
+
+        // Initialize theme
+        ThemeManager.init();
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener("click", () => {
+          ThemeManager.toggleTheme();
+        });
+
+        // Watch for system theme changes (only if no local preference is set)
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+          if (!localStorage.getItem(ThemeConfig.STORAGE_KEY)) {
+            const newTheme = e.matches ? ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
+            ThemeManager.applyTheme(newTheme);
+          }
+        });
+
+        // Additional responsive feature: Adjust button size for mobile
+        const adjustButtonForMobile = () => {
+          if (window.innerWidth < 640) { // sm breakpoint
+            themeToggle.classList.add('p-2');
+            themeToggle.classList.remove('p-3');
+          } else {
+            themeToggle.classList.add('p-3');
+            themeToggle.classList.remove('p-2');
+          }
+        };
+
+        // Initial adjustment and listener for resize
+        adjustButtonForMobile();
+        window.addEventListener('resize', adjustButtonForMobile);
+      });
+    </script>
   </body>
 </html>
