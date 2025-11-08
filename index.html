@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Toggle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Base transitions */
+      html {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* Theme toggle button styles */
+      .theme-toggle-btn {
+        padding: 0.75rem;
+        border-radius: 9999px;
+        background-color: #e5e7eb; /* bg-gray-200 */
+        transition: background-color 0.3s ease;
+      }
+
+      .dark .theme-toggle-btn {
+        background-color: #374151; /* dark:bg-gray-700 */
+      }
+
+      .theme-toggle-btn:hover {
+        background-color: #d1d5db; /* hover:bg-gray-300 */
+      }
+
+      .dark .theme-toggle-btn:hover {
+        background-color: #4b5563; /* dark:hover:bg-gray-600 */
+      }
+
+      /* Focus styles for accessibility */
+      .theme-toggle-btn:focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+      }
+
+      /* Icon animation */
+      #theme-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle-btn:hover #theme-icon {
+        transform: scale(1.1);
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background-color: white !important;
+          color: black !important;
+        }
+
+        .theme-toggle-btn {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 min-h-screen"
+  >
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+      <header class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-bold">Theme Switcher</h1>
+          <p class="text-gray-600 dark:text-gray-400">
+            Toggle between dark and light mode
+          </p>
+        </div>
+        <button
+          id="theme-toggle"
+          aria-label="Toggle theme"
+          class="theme-toggle-btn"
+        >
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+      </header>
+
+      <main>
+        <section
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6"
+        >
+          <h2 class="text-2xl font-semibold mb-4">Demo Content</h2>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">
+            This theme switcher:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+            <li>Saves your preference using localStorage</li>
+            <li>Respects your system color scheme</li>
+            <li>Works on all devices</li>
+            <li>Has smooth transitions</li>
+          </ul>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h3 class="font-medium mb-3">Card Example</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              This card adapts to the current theme.
+            </p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h3 class="font-medium mb-3">Another Card</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              All elements respond to theme changes.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <footer
+        class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center"
+      >
+        <p class="text-gray-600 dark:text-gray-400">© 2025 Theme Toggle Demo</p>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        const html = document.documentElement;
+
+        // Function to update icon and localStorage
+        const setTheme = (isDark) => {
+          if (isDark) {
+            html.classList.add("dark");
+            themeIcon.className = "fas fa-sun"; // Sun icon for dark mode (to switch to light)
+            localStorage.setItem("theme", "dark");
+          } else {
+            html.classList.remove("dark");
+            themeIcon.className = "fas fa-moon"; // Moon icon for light mode (to switch to dark)
+            localStorage.setItem("theme", "light");
+          }
+        };
+
+        // Check for saved preference or system preference
+        const savedTheme = localStorage.getItem("theme");
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        // Initialize theme
+        if (savedTheme) {
+          setTheme(savedTheme === "dark");
+        } else {
+          setTheme(systemPrefersDark);
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener("click", () => {
+          const isDark = html.classList.contains("dark");
+          setTheme(!isDark);
+        });
+
+        // Watch for system theme changes (if no localStorage preference)
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+              setTheme(e.matches);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
