@@ -63,6 +63,65 @@
         }
       }
     </style>
+    <script>
+      // Function to set theme immediately based on preference or system
+      (function initializeTheme() {
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem("theme");
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        // Apply theme without relying on DOMContentLoaded for a smooth initial load
+        if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+          html.classList.add("dark");
+        } else {
+          html.classList.remove("dark");
+        }
+      })();
+
+      // Wait for the full page load to attach the click listener
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        const html = document.documentElement;
+
+        // Check if elements exist before proceeding
+        if (!themeToggle || !themeIcon) {
+            console.error("Theme toggle button or icon not found.");
+            return;
+        }
+
+        // Function to update icon and localStorage (called after initialization)
+        const updateIconAndStorage = (isDark) => {
+          if (isDark) {
+            themeIcon.className = "fas fa-sun";
+            localStorage.setItem("theme", "dark");
+          } else {
+            themeIcon.className = "fas fa-moon";
+            localStorage.setItem("theme", "light");
+          }
+        };
+
+        // Set the initial icon state based on the already-applied theme class
+        updateIconAndStorage(html.classList.contains('dark'));
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener("click", () => {
+          const isDark = html.classList.toggle("dark"); // Toggle the class and get the new state
+          updateIconAndStorage(isDark);
+        });
+
+        // Watch for system theme changes (if no localStorage preference set)
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+              const isDark = e.matches;
+              isDark ? html.classList.add("dark") : html.classList.remove("dark");
+              updateIconAndStorage(isDark);
+            }
+          });
+      });
+    </script>
   </head>
   <body
     class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 min-h-screen"
@@ -93,10 +152,9 @@
             This theme switcher:
           </p>
           <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-            <li>Saves your preference using localStorage</li>
-            <li>Respects your system color scheme</li>
-            <li>Works on all devices</li>
-            <li>Has smooth transitions</li>
+            <li>Saves your preference using **localStorage**</li>
+            <li>Respects your system color scheme via **`matchMedia`**</li>
+            <li>Works on all devices and has smooth **transitions**</li>
           </ul>
         </section>
 
@@ -122,54 +180,5 @@
         <p class="text-gray-600 dark:text-gray-400">© 2025 Theme Toggle Demo</p>
       </footer>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = document.getElementById("theme-icon");
-        const html = document.documentElement;
-
-        // Function to update icon and localStorage
-        const setTheme = (isDark) => {
-          if (isDark) {
-            html.classList.add("dark");
-            themeIcon.className = "fas fa-sun"; // Sun icon for dark mode (to switch to light)
-            localStorage.setItem("theme", "dark");
-          } else {
-            html.classList.remove("dark");
-            themeIcon.className = "fas fa-moon"; // Moon icon for light mode (to switch to dark)
-            localStorage.setItem("theme", "light");
-          }
-        };
-
-        // Check for saved preference or system preference
-        const savedTheme = localStorage.getItem("theme");
-        const systemPrefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-
-        // Initialize theme
-        if (savedTheme) {
-          setTheme(savedTheme === "dark");
-        } else {
-          setTheme(systemPrefersDark);
-        }
-
-        // Toggle theme on button click
-        themeToggle.addEventListener("click", () => {
-          const isDark = html.classList.contains("dark");
-          setTheme(!isDark);
-        });
-
-        // Watch for system theme changes (if no localStorage preference)
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .addEventListener("change", (e) => {
-            if (!localStorage.getItem("theme")) {
-              setTheme(e.matches);
-            }
-          });
-      });
-    </script>
   </body>
 </html>
