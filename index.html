@@ -24,7 +24,7 @@
       #theme-toggle:hover #theme-icon {
         transform: scale(1.1);
       }
-      
+
       /* Print styles */
       @media print {
         body {
@@ -37,32 +37,36 @@
         }
       }
     </style>
-    
+
     <!-- 1. FOUC PREVENTION SCRIPT: Minimal script runs immediately to set the 'dark' class -->
     <script>
       (function initializeThemeClass() {
         // Configuration object - centralized theme management
         const ThemeConfig = {
-          STORAGE_KEY: 'theme',
-          CLASS_NAME: 'dark',
+          STORAGE_KEY: "theme",
+          CLASS_NAME: "dark",
           THEMES: {
-            DARK: 'dark',
-            LIGHT: 'light'
+            DARK: "dark",
+            LIGHT: "light",
           },
           ICONS: {
-            DARK: 'fas fa-sun',
-            LIGHT: 'fas fa-moon'
-          }
+            DARK: "fas fa-sun",
+            LIGHT: "fas fa-moon",
+          },
         };
 
         const html = document.documentElement;
         const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
-        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
 
         // Determine initial theme
-        const initialTheme = savedTheme === ThemeConfig.THEMES.DARK || 
-                            (!savedTheme && systemPrefersDark) ? 
-                            ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
+        const initialTheme =
+          savedTheme === ThemeConfig.THEMES.DARK ||
+          (!savedTheme && systemPrefersDark)
+            ? ThemeConfig.THEMES.DARK
+            : ThemeConfig.THEMES.LIGHT;
 
         // Apply initial theme
         if (initialTheme === ThemeConfig.THEMES.DARK) {
@@ -102,7 +106,9 @@
             This theme switcher:
           </p>
           <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-            <li>Uses a **centralized configuration object** to maintain state.</li>
+            <li>
+              Uses a **centralized configuration object** to maintain state.
+            </li>
             <li>Saves your preference using **localStorage**.</li>
             <li>Respects your system color scheme.</li>
             <li>Fully responsive across all devices.</li>
@@ -125,18 +131,26 @@
         </div>
 
         <!-- Additional responsive content -->
-        <section class="mt-8 bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6">
+        <section
+          class="mt-8 bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6"
+        >
           <h2 class="text-2xl font-semibold mb-4">Responsive Features</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+            <div
+              class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg"
+            >
               <i class="fas fa-mobile-alt text-2xl mb-2 text-blue-500"></i>
               <p class="text-sm">Mobile First</p>
             </div>
-            <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+            <div
+              class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg"
+            >
               <i class="fas fa-tablet-alt text-2xl mb-2 text-green-500"></i>
               <p class="text-sm">Tablet Optimized</p>
             </div>
-            <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+            <div
+              class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-lg"
+            >
               <i class="fas fa-desktop text-2xl mb-2 text-purple-500"></i>
               <p class="text-sm">Desktop Ready</p>
             </div>
@@ -156,42 +170,44 @@
       document.addEventListener("DOMContentLoaded", () => {
         // Centralized Theme Configuration Object
         const ThemeConfig = {
-          STORAGE_KEY: 'theme',
-          CLASS_NAME: 'dark',
+          STORAGE_KEY: "theme",
+          CLASS_NAME: "dark",
           THEMES: {
-            DARK: 'dark',
-            LIGHT: 'light'
+            DARK: "dark",
+            LIGHT: "light",
           },
           ICONS: {
-            DARK: 'fas fa-sun',
-            LIGHT: 'fas fa-moon'
+            DARK: "fas fa-sun",
+            LIGHT: "fas fa-moon",
           },
           ELEMENTS: {
             themeToggle: document.getElementById("theme-toggle"),
             themeIcon: document.getElementById("theme-icon"),
-            html: document.documentElement
-          }
+            html: document.documentElement,
+          },
         };
 
         const { themeToggle, themeIcon, html } = ThemeConfig.ELEMENTS;
 
         if (!themeToggle || !themeIcon) return;
-        
+
         // Theme State Manager
         const ThemeManager = {
-          currentTheme: html.classList.contains(ThemeConfig.CLASS_NAME) ? 
-                       ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT,
-          
+          currentTheme: html.classList.contains(ThemeConfig.CLASS_NAME)
+            ? ThemeConfig.THEMES.DARK
+            : ThemeConfig.THEMES.LIGHT,
+
           // Get system preference
           getSystemPreference() {
-            return window.matchMedia("(prefers-color-scheme: dark)").matches ? 
-                   ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
+            return window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? ThemeConfig.THEMES.DARK
+              : ThemeConfig.THEMES.LIGHT;
           },
-          
+
           // Apply theme to all components
           applyTheme(theme) {
             this.currentTheme = theme;
-            
+
             if (theme === ThemeConfig.THEMES.DARK) {
               html.classList.add(ThemeConfig.CLASS_NAME);
               themeIcon.className = ThemeConfig.ICONS.DARK;
@@ -199,59 +215,66 @@
               html.classList.remove(ThemeConfig.CLASS_NAME);
               themeIcon.className = ThemeConfig.ICONS.LIGHT;
             }
-            
+
             localStorage.setItem(ThemeConfig.STORAGE_KEY, theme);
           },
-          
+
           // Toggle between themes
           toggleTheme() {
-            const newTheme = this.currentTheme === ThemeConfig.THEMES.DARK ? 
-                           ThemeConfig.THEMES.LIGHT : ThemeConfig.THEMES.DARK;
+            const newTheme =
+              this.currentTheme === ThemeConfig.THEMES.DARK
+                ? ThemeConfig.THEMES.LIGHT
+                : ThemeConfig.THEMES.DARK;
             this.applyTheme(newTheme);
           },
-          
+
           // Initialize theme manager
           init() {
             const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
-            
+
             if (savedTheme) {
               this.applyTheme(savedTheme);
             } else {
               this.applyTheme(this.getSystemPreference());
             }
-          }
+          },
         };
 
         // Initialize theme
         ThemeManager.init();
-        
+
         // Toggle theme on button click
         themeToggle.addEventListener("click", () => {
           ThemeManager.toggleTheme();
         });
 
         // Watch for system theme changes (only if no local preference is set)
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-          if (!localStorage.getItem(ThemeConfig.STORAGE_KEY)) {
-            const newTheme = e.matches ? ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
-            ThemeManager.applyTheme(newTheme);
-          }
-        });
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem(ThemeConfig.STORAGE_KEY)) {
+              const newTheme = e.matches
+                ? ThemeConfig.THEMES.DARK
+                : ThemeConfig.THEMES.LIGHT;
+              ThemeManager.applyTheme(newTheme);
+            }
+          });
 
         // Additional responsive feature: Adjust button size for mobile
         const adjustButtonForMobile = () => {
-          if (window.innerWidth < 640) { // sm breakpoint
-            themeToggle.classList.add('p-2');
-            themeToggle.classList.remove('p-3');
+          if (window.innerWidth < 640) {
+            // sm breakpoint
+            themeToggle.classList.add("p-2");
+            themeToggle.classList.remove("p-3");
           } else {
-            themeToggle.classList.add('p-3');
-            themeToggle.classList.remove('p-2');
+            themeToggle.classList.add("p-3");
+            themeToggle.classList.remove("p-2");
           }
         };
 
         // Initial adjustment and listener for resize
         adjustButtonForMobile();
-        window.addEventListener('resize', adjustButtonForMobile);
+        window.addEventListener("resize", adjustButtonForMobile);
       });
     </script>
   </body>
