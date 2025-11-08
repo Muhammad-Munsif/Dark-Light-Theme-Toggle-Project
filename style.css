@@ -1,54 +1,52 @@
+/* Base transitions */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-      /* Base transitions */
-      html {
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
+/* Theme toggle button styles */
+.theme-toggle-btn {
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background-color: #e5e7eb; /* bg-gray-200 */
+  transition: background-color 0.3s ease;
+}
 
-      /* Theme toggle button styles */
-      .theme-toggle-btn {
-        padding: 0.75rem;
-        border-radius: 9999px;
-        background-color: #e5e7eb; /* bg-gray-200 */
-        transition: background-color 0.3s ease;
-      }
+.dark .theme-toggle-btn {
+  background-color: #374151; /* dark:bg-gray-700 */
+}
 
-      .dark .theme-toggle-btn {
-        background-color: #374151; /* dark:bg-gray-700 */
-      }
+.theme-toggle-btn:hover {
+  background-color: #d1d5db; /* hover:bg-gray-300 */
+}
 
-      .theme-toggle-btn:hover {
-        background-color: #d1d5db; /* hover:bg-gray-300 */
-      }
+.dark .theme-toggle-btn:hover {
+  background-color: #4b5563; /* dark:hover:bg-gray-600 */
+}
 
-      .dark .theme-toggle-btn:hover {
-        background-color: #4b5563; /* dark:hover:bg-gray-600 */
-      }
+/* Focus styles for accessibility */
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
 
-      /* Focus styles for accessibility */
-      .theme-toggle-btn:focus-visible {
-        outline: 2px solid #3b82f6;
-        outline-offset: 2px;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-      }
+/* Icon animation */
+#theme-icon {
+  transition: transform 0.3s ease;
+}
 
-      /* Icon animation */
-      #theme-icon {
-        transition: transform 0.3s ease;
-      }
+.theme-toggle-btn:hover #theme-icon {
+  transform: scale(1.1);
+}
 
-      .theme-toggle-btn:hover #theme-icon {
-        transform: scale(1.1);
-      }
+/* Print styles */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
 
-      /* Print styles */
-      @media print {
-        body {
-          background-color: white !important;
-          color: black !important;
-        }
-
-        .theme-toggle-btn {
-          display: none;
-        }
-      }
-    
+  .theme-toggle-btn {
+    display: none;
+  }
+}
