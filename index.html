@@ -1,334 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Theme Toggle</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --transition-speed: 0.3s;
-            --primary-color: #0d6efd;
-            --success-color: #198754;
-            --info-color: #0dcaf0;
-            --border-radius: 0.375rem;
-            --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            --box-shadow-lg: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
+      :root {
+        --transition-speed: 0.3s;
+        --primary-color: #0d6efd;
+        --success-color: #198754;
+        --info-color: #0dcaf0;
+        --border-radius: 0.375rem;
+        --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        --box-shadow-lg: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      }
 
-        [data-theme="dark"] {
-            --primary-color: #3b82f6;
-            --success-color: #10b981;
-            --info-color: #06b6d4;
+      [data-theme="dark"] {
+        --primary-color: #3b82f6;
+        --success-color: #10b981;
+        --info-color: #06b6d4;
+      }
+
+      body {
+        transition: background-color var(--transition-speed) ease,
+          color var(--transition-speed) ease;
+        min-height: 100vh;
+      }
+
+      .theme-toggle-btn {
+        transition: all var(--transition-speed) ease;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .theme-toggle-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .theme-toggle-btn:focus {
+        box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5);
+      }
+
+      .card {
+        transition: all var(--transition-speed) ease;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+      }
+
+      [data-theme="dark"] .card {
+        border-color: rgba(255, 255, 255, 0.125);
+      }
+
+      .theme-icon {
+        transition: transform var(--transition-speed) ease;
+      }
+
+      .theme-toggle-btn:hover .theme-icon {
+        transform: rotate(15deg);
+      }
+
+      /* Print styles */
+      @media print {
+        .theme-toggle-btn {
+          display: none !important;
         }
 
         body {
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-            min-height: 100vh;
-        }
-
-        .theme-toggle-btn {
-            transition: all var(--transition-speed) ease;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .theme-toggle-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .theme-toggle-btn:focus {
-            box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5);
+          background-color: white !important;
+          color: black !important;
         }
 
         .card {
-            transition: all var(--transition-speed) ease;
-            border: 1px solid rgba(0, 0, 0, 0.125);
+          border: 1px solid #000 !important;
+          box-shadow: none !important;
         }
-
-        [data-theme="dark"] .card {
-            border-color: rgba(255, 255, 255, 0.125);
-        }
-
-        .theme-icon {
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .theme-toggle-btn:hover .theme-icon {
-            transform: rotate(15deg);
-        }
-
-        /* Print styles */
-        @media print {
-            .theme-toggle-btn {
-                display: none !important;
-            }
-            
-            body {
-                background-color: white !important;
-                color: black !important;
-            }
-            
-            .card {
-                border: 1px solid #000 !important;
-                box-shadow: none !important;
-            }
-        }
+      }
     </style>
-</head>
-<body class="bg-light" data-theme="light">
+  </head>
+  <body class="bg-light" data-theme="light">
     <div class="container py-4">
-        <header class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h1 class="h2 mb-1">Responsive Theme Toggle</h1>
-                <p class="text-muted mb-0">Built with Bootstrap & JavaScript</p>
+      <header class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h1 class="h2 mb-1">Responsive Theme Toggle</h1>
+          <p class="text-muted mb-0">Built with Bootstrap & JavaScript</p>
+        </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle-btn btn btn-primary rounded-circle p-2"
+          aria-label="Toggle theme"
+        >
+          <i id="theme-icon" class="fas fa-moon theme-icon"></i>
+        </button>
+      </header>
+
+      <main>
+        <section class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h2 class="card-title h4 mb-3">Theme Features</h2>
+            <p class="card-text">This responsive theme switcher includes:</p>
+            <ul class="list-group list-group-flush mb-3">
+              <li class="list-group-item px-0">
+                <i class="fas fa-check text-success me-2"></i>
+                Centralized configuration object
+              </li>
+              <li class="list-group-item px-0">
+                <i class="fas fa-check text-success me-2"></i>
+                localStorage for preference persistence
+              </li>
+              <li class="list-group-item px-0">
+                <i class="fas fa-check text-success me-2"></i>
+                System preference detection
+              </li>
+              <li class="list-group-item px-0">
+                <i class="fas fa-check text-success me-2"></i>
+                Fully responsive design
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h3 class="card-title h5">Card Example</h3>
+                <p class="card-text">
+                  This card adapts to the current theme and screen size.
+                </p>
+              </div>
             </div>
-            <button id="theme-toggle" class="theme-toggle-btn btn btn-primary rounded-circle p-2" aria-label="Toggle theme">
-                <i id="theme-icon" class="fas fa-moon theme-icon"></i>
-            </button>
-        </header>
-
-        <main>
-            <section class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <h2 class="card-title h4 mb-3">Theme Features</h2>
-                    <p class="card-text">This responsive theme switcher includes:</p>
-                    <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item px-0">
-                            <i class="fas fa-check text-success me-2"></i>
-                            Centralized configuration object
-                        </li>
-                        <li class="list-group-item px-0">
-                            <i class="fas fa-check text-success me-2"></i>
-                            localStorage for preference persistence
-                        </li>
-                        <li class="list-group-item px-0">
-                            <i class="fas fa-check text-success me-2"></i>
-                            System preference detection
-                        </li>
-                        <li class="list-group-item px-0">
-                            <i class="fas fa-check text-success me-2"></i>
-                            Fully responsive design
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title h5">Card Example</h3>
-                            <p class="card-text">This card adapts to the current theme and screen size.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title h5">Another Card</h3>
-                            <p class="card-text">All elements respond to theme changes and device sizes.</p>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h3 class="card-title h5">Another Card</h3>
+                <p class="card-text">
+                  All elements respond to theme changes and device sizes.
+                </p>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <section class="card shadow-sm">
-                <div class="card-body">
-                    <h2 class="card-title h4 mb-3">Responsive Features</h2>
-                    <div class="row g-3">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card text-center h-100">
-                                <div class="card-body">
-                                    <i class="fas fa-mobile-alt fa-2x mb-2 text-primary"></i>
-                                    <h5 class="card-title">Mobile First</h5>
-                                    <p class="card-text small">Optimized for small screens</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card text-center h-100">
-                                <div class="card-body">
-                                    <i class="fas fa-tablet-alt fa-2x mb-2 text-success"></i>
-                                    <h5 class="card-title">Tablet Ready</h5>
-                                    <p class="card-text small">Perfect for medium devices</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card text-center h-100">
-                                <div class="card-body">
-                                    <i class="fas fa-desktop fa-2x mb-2 text-info"></i>
-                                    <h5 class="card-title">Desktop Optimized</h5>
-                                    <p class="card-text small">Great experience on large screens</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title h4 mb-3">Responsive Features</h2>
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-4">
+                <div class="card text-center h-100">
+                  <div class="card-body">
+                    <i class="fas fa-mobile-alt fa-2x mb-2 text-primary"></i>
+                    <h5 class="card-title">Mobile First</h5>
+                    <p class="card-text small">Optimized for small screens</p>
+                  </div>
                 </div>
-            </section>
-        </main>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="card text-center h-100">
+                  <div class="card-body">
+                    <i class="fas fa-tablet-alt fa-2x mb-2 text-success"></i>
+                    <h5 class="card-title">Tablet Ready</h5>
+                    <p class="card-text small">Perfect for medium devices</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="card text-center h-100">
+                  <div class="card-body">
+                    <i class="fas fa-desktop fa-2x mb-2 text-info"></i>
+                    <h5 class="card-title">Desktop Optimized</h5>
+                    <p class="card-text small">
+                      Great experience on large screens
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
-        <footer class="mt-5 pt-4 border-top text-center">
-            <p class="text-muted">© 2023 Responsive Theme Toggle Demo</p>
-        </footer>
+      <footer class="mt-5 pt-4 border-top text-center">
+        <p class="text-muted">© 2023 Responsive Theme Toggle Demo</p>
+      </footer>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Theme Management Script -->
     <script>
-        // Centralized Theme Configuration
-        const ThemeConfig = {
-            STORAGE_KEY: 'theme-preference',
-            THEMES: {
-                LIGHT: 'light',
-                DARK: 'dark'
-            },
-            ICONS: {
-                LIGHT: 'fas fa-moon',
-                DARK: 'fas fa-sun'
-            },
-            CLASSES: {
-                LIGHT: {
-                    body: 'bg-light text-dark',
-                    card: 'bg-white',
-                    textMuted: 'text-muted'
-                },
-                DARK: {
-                    body: 'bg-dark text-light',
-                    card: 'bg-secondary text-light',
-                    textMuted: 'text-light-emphasis'
-                }
-            }
-        };
+      // Centralized Theme Configuration
+      const ThemeConfig = {
+        STORAGE_KEY: "theme-preference",
+        THEMES: {
+          LIGHT: "light",
+          DARK: "dark",
+        },
+        ICONS: {
+          LIGHT: "fas fa-moon",
+          DARK: "fas fa-sun",
+        },
+        CLASSES: {
+          LIGHT: {
+            body: "bg-light text-dark",
+            card: "bg-white",
+            textMuted: "text-muted",
+          },
+          DARK: {
+            body: "bg-dark text-light",
+            card: "bg-secondary text-light",
+            textMuted: "text-light-emphasis",
+          },
+        },
+      };
 
-        // Theme Manager
-        const ThemeManager = {
-            currentTheme: null,
-            
-            // Initialize theme
-            init() {
-                // Get saved theme or system preference
-                const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
-                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                
-                this.currentTheme = savedTheme || (systemPrefersDark ? ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT);
-                
-                // Apply theme
-                this.applyTheme(this.currentTheme);
-                
-                // Set up event listeners
-                this.setupEventListeners();
-                
-                // Adjust for screen size
-                this.adjustForScreenSize();
-            },
-            
-            // Apply theme to the document
-            applyTheme(theme) {
-                // Update data attribute
-                document.body.setAttribute('data-theme', theme);
-                
-                // Update theme icon
-                const themeIcon = document.getElementById('theme-icon');
-                if (themeIcon) {
-                    themeIcon.className = theme === ThemeConfig.THEMES.DARK 
-                        ? ThemeConfig.ICONS.DARK 
-                        : ThemeConfig.ICONS.LIGHT;
-                }
-                
-                // Update button classes
-                const themeToggle = document.getElementById('theme-toggle');
-                if (themeToggle) {
-                    if (theme === ThemeConfig.THEMES.DARK) {
-                        themeToggle.classList.remove('btn-primary');
-                        themeToggle.classList.add('btn-warning');
-                    } else {
-                        themeToggle.classList.remove('btn-warning');
-                        themeToggle.classList.add('btn-primary');
-                    }
-                }
-                
-                // Save preference
-                localStorage.setItem(ThemeConfig.STORAGE_KEY, theme);
-                this.currentTheme = theme;
-            },
-            
-            // Toggle between themes
-            toggleTheme() {
-                const newTheme = this.currentTheme === ThemeConfig.THEMES.DARK 
-                    ? ThemeConfig.THEMES.LIGHT 
-                    : ThemeConfig.THEMES.DARK;
-                
+      // Theme Manager
+      const ThemeManager = {
+        currentTheme: null,
+
+        // Initialize theme
+        init() {
+          // Get saved theme or system preference
+          const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
+          const systemPrefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+
+          this.currentTheme =
+            savedTheme ||
+            (systemPrefersDark
+              ? ThemeConfig.THEMES.DARK
+              : ThemeConfig.THEMES.LIGHT);
+
+          // Apply theme
+          this.applyTheme(this.currentTheme);
+
+          // Set up event listeners
+          this.setupEventListeners();
+
+          // Adjust for screen size
+          this.adjustForScreenSize();
+        },
+
+        // Apply theme to the document
+        applyTheme(theme) {
+          // Update data attribute
+          document.body.setAttribute("data-theme", theme);
+
+          // Update theme icon
+          const themeIcon = document.getElementById("theme-icon");
+          if (themeIcon) {
+            themeIcon.className =
+              theme === ThemeConfig.THEMES.DARK
+                ? ThemeConfig.ICONS.DARK
+                : ThemeConfig.ICONS.LIGHT;
+          }
+
+          // Update button classes
+          const themeToggle = document.getElementById("theme-toggle");
+          if (themeToggle) {
+            if (theme === ThemeConfig.THEMES.DARK) {
+              themeToggle.classList.remove("btn-primary");
+              themeToggle.classList.add("btn-warning");
+            } else {
+              themeToggle.classList.remove("btn-warning");
+              themeToggle.classList.add("btn-primary");
+            }
+          }
+
+          // Save preference
+          localStorage.setItem(ThemeConfig.STORAGE_KEY, theme);
+          this.currentTheme = theme;
+        },
+
+        // Toggle between themes
+        toggleTheme() {
+          const newTheme =
+            this.currentTheme === ThemeConfig.THEMES.DARK
+              ? ThemeConfig.THEMES.LIGHT
+              : ThemeConfig.THEMES.DARK;
+
+          this.applyTheme(newTheme);
+        },
+
+        // Set up event listeners
+        setupEventListeners() {
+          // Theme toggle button
+          const themeToggle = document.getElementById("theme-toggle");
+          if (themeToggle) {
+            themeToggle.addEventListener("click", () => {
+              this.toggleTheme();
+            });
+          }
+
+          // System preference changes
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", (e) => {
+              // Only update if no explicit preference is set
+              if (!localStorage.getItem(ThemeConfig.STORAGE_KEY)) {
+                const newTheme = e.matches
+                  ? ThemeConfig.THEMES.DARK
+                  : ThemeConfig.THEMES.LIGHT;
                 this.applyTheme(newTheme);
-            },
-            
-            // Set up event listeners
-            setupEventListeners() {
-                // Theme toggle button
-                const themeToggle = document.getElementById('theme-toggle');
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', () => {
-                        this.toggleTheme();
-                    });
-                }
-                
-                // System preference changes
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-                    // Only update if no explicit preference is set
-                    if (!localStorage.getItem(ThemeConfig.STORAGE_KEY)) {
-                        const newTheme = e.matches ? ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT;
-                        this.applyTheme(newTheme);
-                    }
-                });
-                
-                // Window resize for responsive adjustments
-                window.addEventListener('resize', () => {
-                    this.adjustForScreenSize();
-                });
-            },
-            
-            // Adjust UI for different screen sizes
-            adjustForScreenSize() {
-                const themeToggle = document.getElementById('theme-toggle');
-                if (!themeToggle) return;
-                
-                if (window.innerWidth < 576) {
-                    // Extra small devices
-                    themeToggle.classList.add('p-1');
-                    themeToggle.classList.remove('p-2');
-                } else if (window.innerWidth < 768) {
-                    // Small devices
-                    themeToggle.classList.add('p-2');
-                    themeToggle.classList.remove('p-1', 'p-3');
-                } else {
-                    // Medium devices and up
-                    themeToggle.classList.add('p-3');
-                    themeToggle.classList.remove('p-1', 'p-2');
-                }
-            }
-        };
+              }
+            });
 
-        // Initialize theme manager when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            ThemeManager.init();
-        });
+          // Window resize for responsive adjustments
+          window.addEventListener("resize", () => {
+            this.adjustForScreenSize();
+          });
+        },
 
-        // Apply theme immediately to prevent FOUC (Flash of Unstyled Content)
-        (function preventFOUC() {
-            const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            const initialTheme = savedTheme || (systemPrefersDark ? ThemeConfig.THEMES.DARK : ThemeConfig.THEMES.LIGHT);
-            document.body.setAttribute('data-theme', initialTheme);
-        })();
+        // Adjust UI for different screen sizes
+        adjustForScreenSize() {
+          const themeToggle = document.getElementById("theme-toggle");
+          if (!themeToggle) return;
+
+          if (window.innerWidth < 576) {
+            // Extra small devices
+            themeToggle.classList.add("p-1");
+            themeToggle.classList.remove("p-2");
+          } else if (window.innerWidth < 768) {
+            // Small devices
+            themeToggle.classList.add("p-2");
+            themeToggle.classList.remove("p-1", "p-3");
+          } else {
+            // Medium devices and up
+            themeToggle.classList.add("p-3");
+            themeToggle.classList.remove("p-1", "p-2");
+          }
+        },
+      };
+
+      // Initialize theme manager when DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        ThemeManager.init();
+      });
+
+      // Apply theme immediately to prevent FOUC (Flash of Unstyled Content)
+      (function preventFOUC() {
+        const savedTheme = localStorage.getItem(ThemeConfig.STORAGE_KEY);
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        const initialTheme =
+          savedTheme ||
+          (systemPrefersDark
+            ? ThemeConfig.THEMES.DARK
+            : ThemeConfig.THEMES.LIGHT);
+        document.body.setAttribute("data-theme", initialTheme);
+      })();
     </script>
-</body>
+  </body>
 </html>
