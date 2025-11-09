@@ -12,57 +12,57 @@
     />
     <style>
       /* Base transitions */
-html {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+      html {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
 
-/* Theme toggle button styles */
-.theme-toggle-btn {
-  padding: 0.75rem;
-  border-radius: 9999px;
-  background-color: #e5e7eb; /* bg-gray-200 */
-  transition: background-color 0.3s ease;
-}
+      /* Theme toggle button styles */
+      .theme-toggle-btn {
+        padding: 0.75rem;
+        border-radius: 9999px;
+        background-color: #e5e7eb; /* bg-gray-200 */
+        transition: background-color 0.3s ease;
+      }
 
-.dark .theme-toggle-btn {
-  background-color: #374151; /* dark:bg-gray-700 */
-}
+      .dark .theme-toggle-btn {
+        background-color: #374151; /* dark:bg-gray-700 */
+      }
 
-.theme-toggle-btn:hover {
-  background-color: #d1d5db; /* hover:bg-gray-300 */
-}
+      .theme-toggle-btn:hover {
+        background-color: #d1d5db; /* hover:bg-gray-300 */
+      }
 
-.dark .theme-toggle-btn:hover {
-  background-color: #4b5563; /* dark:hover:bg-gray-600 */
-}
+      .dark .theme-toggle-btn:hover {
+        background-color: #4b5563; /* dark:hover:bg-gray-600 */
+      }
 
-/* Focus styles for accessibility */
-.theme-toggle-btn:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-}
+      /* Focus styles for accessibility */
+      .theme-toggle-btn:focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+      }
 
-/* Icon animation */
-#theme-icon {
-  transition: transform 0.3s ease;
-}
+      /* Icon animation */
+      #theme-icon {
+        transition: transform 0.3s ease;
+      }
 
-.theme-toggle-btn:hover #theme-icon {
-  transform: scale(1.1);
-}
+      .theme-toggle-btn:hover #theme-icon {
+        transform: scale(1.1);
+      }
 
-/* Print styles */
-@media print {
-  body {
-    background-color: white !important;
-    color: black !important;
-  }
+      /* Print styles */
+      @media print {
+        body {
+          background-color: white !important;
+          color: black !important;
+        }
 
-  .theme-toggle-btn {
-    display: none;
-  }
-}
+        .theme-toggle-btn {
+          display: none;
+        }
+      }
 
       html {
         transition: background-color 0.3s ease, color 0.3s ease;
@@ -329,65 +329,66 @@ html {
         adjustButtonForMobile();
         window.addEventListener("resize", adjustButtonForMobile);
         // Function to set theme immediately based on preference or system
-(function initializeTheme() {
-  const html = document.documentElement;
-  const savedTheme = localStorage.getItem("theme");
-  const systemPrefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
+        (function initializeTheme() {
+          const html = document.documentElement;
+          const savedTheme = localStorage.getItem("theme");
+          const systemPrefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
 
-  // Apply theme without relying on DOMContentLoaded for a smooth initial load
-  if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
-    html.classList.add("dark");
-  } else {
-    html.classList.remove("dark");
-  }
-})();
+          // Apply theme without relying on DOMContentLoaded for a smooth initial load
+          if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+            html.classList.add("dark");
+          } else {
+            html.classList.remove("dark");
+          }
+        })();
 
-// Wait for the full page load to attach the click listener
-document.addEventListener("DOMContentLoaded", () => {
-  const themeToggle = document.getElementById("theme-toggle");
-  const themeIcon = document.getElementById("theme-icon");
-  const html = document.documentElement;
+        // Wait for the full page load to attach the click listener
+        document.addEventListener("DOMContentLoaded", () => {
+          const themeToggle = document.getElementById("theme-toggle");
+          const themeIcon = document.getElementById("theme-icon");
+          const html = document.documentElement;
 
-  // Check if elements exist before proceeding
-  if (!themeToggle || !themeIcon) {
-    console.error("Theme toggle button or icon not found.");
-    return;
-  }
+          // Check if elements exist before proceeding
+          if (!themeToggle || !themeIcon) {
+            console.error("Theme toggle button or icon not found.");
+            return;
+          }
 
-  // Function to update icon and localStorage (called after initialization)
-  const updateIconAndStorage = (isDark) => {
-    if (isDark) {
-      themeIcon.className = "fas fa-sun";
-      localStorage.setItem("theme", "dark");
-    } else {
-      themeIcon.className = "fas fa-moon";
-      localStorage.setItem("theme", "light");
-    }
-  };
+          // Function to update icon and localStorage (called after initialization)
+          const updateIconAndStorage = (isDark) => {
+            if (isDark) {
+              themeIcon.className = "fas fa-sun";
+              localStorage.setItem("theme", "dark");
+            } else {
+              themeIcon.className = "fas fa-moon";
+              localStorage.setItem("theme", "light");
+            }
+          };
 
-  // Set the initial icon state based on the already-applied theme class
-  updateIconAndStorage(html.classList.contains("dark"));
+          // Set the initial icon state based on the already-applied theme class
+          updateIconAndStorage(html.classList.contains("dark"));
 
-  // Toggle theme on button click
-  themeToggle.addEventListener("click", () => {
-    const isDark = html.classList.toggle("dark"); // Toggle the class and get the new state
-    updateIconAndStorage(isDark);
-  });
+          // Toggle theme on button click
+          themeToggle.addEventListener("click", () => {
+            const isDark = html.classList.toggle("dark"); // Toggle the class and get the new state
+            updateIconAndStorage(isDark);
+          });
 
-  // Watch for system theme changes (if no localStorage preference set)
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      if (!localStorage.getItem("theme")) {
-        const isDark = e.matches;
-        isDark ? html.classList.add("dark") : html.classList.remove("dark");
-        updateIconAndStorage(isDark);
-      }
-    });
-});
-
+          // Watch for system theme changes (if no localStorage preference set)
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", (e) => {
+              if (!localStorage.getItem("theme")) {
+                const isDark = e.matches;
+                isDark
+                  ? html.classList.add("dark")
+                  : html.classList.remove("dark");
+                updateIconAndStorage(isDark);
+              }
+            });
+        });
       });
     </script>
   </body>
