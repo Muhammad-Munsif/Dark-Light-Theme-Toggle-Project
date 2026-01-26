@@ -1,4 +1,4 @@
- <script>
+
     // Enhanced Theme Management System
     class ThemeManager {
       constructor() {
@@ -274,4 +274,4 @@
       const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
       document.body.setAttribute('data-theme', initialTheme);
     })();
-  </script>
+  
