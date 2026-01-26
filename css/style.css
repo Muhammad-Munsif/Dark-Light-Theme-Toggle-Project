@@ -1,4 +1,4 @@
- <style>
+
     :root {
       --transition-speed: 0.4s;
       --primary-color: #6c63ff;
@@ -592,4 +592,4 @@
       transform: translateY(0);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-  </style>
+  
