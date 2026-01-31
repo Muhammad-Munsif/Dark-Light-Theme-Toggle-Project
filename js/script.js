@@ -1,4 +1,4 @@
-<script>
+
     // Enhanced Theme Management System
     class ThemeManager {
       constructor() {
@@ -287,4 +287,4 @@
     }
 
     document.addEventListener('DOMContentLoaded', setActiveNavLink);
-  </script>
+  
