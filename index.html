@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
@@ -22,9 +23,9 @@
       --text: #2c3e50;
       --text-muted: #5e6f88;
       --border-radius: 24px;
-      --box-shadow: 0 15px 40px -12px rgba(0,0,0,0.15);
+      --box-shadow: 0 15px 40px -12px rgba(0, 0, 0, 0.15);
       --body-bg: #f8faff;
-      --nav-bg: rgba(255,255,255,0.9);
+      --nav-bg: rgba(255, 255, 255, 0.9);
       --footer-bg: #f0f3fd;
       --gradient: linear-gradient(135deg, #6c63ff, #ff6584);
       --satisfaction-width: 87%;
@@ -38,12 +39,13 @@
       --card-bg: #1e1e2e;
       --text: #e2e8f0;
       --text-muted: #a0b3cc;
-      --box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+      --box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
       --body-bg: #0a0a1a;
-      --nav-bg: rgba(20,20,35,0.95);
+      --nav-bg: rgba(20, 20, 35, 0.95);
       --footer-bg: #121222;
       --gradient: linear-gradient(135deg, #8b85ff, #ff7b95);
-      --satisfaction-width: 87%; /* keeps same, can be changed via js */
+      --satisfaction-width: 87%;
+      /* keeps same, can be changed via js */
     }
 
     * {
@@ -62,7 +64,8 @@
       background: var(--body-bg);
       color: var(--text);
       transition: background-color 0.3s, color 0.2s;
-      padding-top: 70px; /* space for fixed navbar */
+      padding-top: 70px;
+      /* space for fixed navbar */
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -77,11 +80,12 @@
       background: var(--nav-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       z-index: 1030;
       transition: background 0.3s, border-color 0.3s;
       padding: 0 1.2rem;
     }
+
     .navbar .container {
       height: 100%;
       display: flex;
@@ -89,6 +93,7 @@
       justify-content: space-between;
       flex-wrap: nowrap;
     }
+
     .navbar-brand {
       font-weight: 700;
       font-size: 1.6rem;
@@ -98,6 +103,7 @@
       -webkit-text-fill-color: transparent;
       letter-spacing: -0.02em;
     }
+
     .navbar-toggler {
       border: none;
       background: transparent;
@@ -106,9 +112,21 @@
       color: var(--text);
       transition: transform 0.2s;
     }
-    .navbar-toggler:active { transform: scale(0.9); }
-    .navbar-toggler:focus { box-shadow: 0 0 0 3px rgba(108,99,255,0.3); outline: none; }
-    .navbar-nav { align-items: center; gap: 0.2rem; }
+
+    .navbar-toggler:active {
+      transform: scale(0.9);
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.3);
+      outline: none;
+    }
+
+    .navbar-nav {
+      align-items: center;
+      gap: 0.2rem;
+    }
+
     .navbar-nav .nav-link {
       color: var(--text) !important;
       font-weight: 500;
@@ -116,12 +134,14 @@
       border-radius: 40px;
       transition: all 0.2s;
     }
+
     .navbar-nav .nav-link:hover,
     .navbar-nav .nav-link.active {
       background: var(--gradient);
       color: white !important;
       transform: translateY(-2px);
     }
+
     /* mobile menu – improved */
     @media (max-width: 991px) {
       .navbar-collapse {
@@ -132,28 +152,42 @@
         background: var(--card-bg);
         border-radius: 24px;
         padding: 1.5rem;
-        box-shadow: 0 30px 50px rgba(0,0,0,0.2);
-        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         max-height: calc(100vh - 100px);
         overflow-y: auto;
       }
-      .navbar-nav { gap: 1rem; }
-      .navbar-nav .nav-link { text-align: center; }
+
+      .navbar-nav {
+        gap: 1rem;
+      }
+
+      .navbar-nav .nav-link {
+        text-align: center;
+      }
     }
+
     /* backdrop for mobile */
     .mobile-backdrop {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.3);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(3px);
       z-index: 1025;
       display: none;
     }
-    .mobile-backdrop.show { display: block; }
+
+    .mobile-backdrop.show {
+      display: block;
+    }
 
     /* theme toggle button – crisp & animated */
     .theme-toggle-btn {
-      width: 48px; height: 48px;
+      width: 48px;
+      height: 48px;
       border-radius: 60px;
       background: var(--gradient);
       border: none;
@@ -162,12 +196,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 16px rgba(108,99,255,0.3);
+      box-shadow: 0 6px 16px rgba(108, 99, 255, 0.3);
       transition: 0.2s;
       cursor: pointer;
     }
-    .theme-toggle-btn:hover { transform: scale(1.08) rotate(8deg); }
-    .theme-toggle-btn:active { transform: scale(0.95); }
+
+    .theme-toggle-btn:hover {
+      transform: scale(1.08) rotate(8deg);
+    }
+
+    .theme-toggle-btn:active {
+      transform: scale(0.95);
+    }
 
     /* hero */
     .hero-title {
@@ -179,6 +219,7 @@
       -webkit-text-fill-color: transparent;
       line-height: 1.2;
     }
+
     .hero-subtitle {
       font-size: clamp(1rem, 3vw, 1.3rem);
       color: var(--text-muted);
@@ -192,13 +233,14 @@
       background: var(--card-bg);
       border: none;
       border-radius: var(--border-radius);
-      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
       transition: transform 0.25s, box-shadow 0.3s, background 0.3s;
       height: 100%;
     }
+
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 30px 45px -15px rgba(108,99,255,0.25);
+      box-shadow: 0 30px 45px -15px rgba(108, 99, 255, 0.25);
     }
 
     /* stats card with gradient */
@@ -212,8 +254,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      box-shadow: 0 20px 30px -5px rgba(108,99,255,0.4);
+      box-shadow: 0 20px 30px -5px rgba(108, 99, 255, 0.4);
     }
+
     .stats-number {
       font-size: clamp(2.5rem, 6vw, 3.2rem);
       font-weight: 700;
@@ -225,6 +268,7 @@
       text-align: center;
       padding: 2rem 1.2rem;
     }
+
     .feature-icon {
       font-size: 2.8rem;
       background: var(--gradient);
@@ -239,7 +283,7 @@
       background: var(--body-bg);
       border-radius: 32px;
       padding: 1.8rem 1.5rem;
-      border: 1px solid rgba(128,128,128,0.15);
+      border: 1px solid rgba(128, 128, 128, 0.15);
     }
 
     /* progress bar with gradient */
@@ -259,14 +303,16 @@
       padding: 0.75rem 2rem;
       border-radius: 60px;
       font-weight: 500;
-      box-shadow: 0 8px 20px -5px rgba(108,99,255,0.5);
+      box-shadow: 0 8px 20px -5px rgba(108, 99, 255, 0.5);
       transition: 0.2s;
     }
+
     .btn-gradient:hover {
       transform: scale(1.03);
-      box-shadow: 0 14px 28px -5px rgba(108,99,255,0.6);
+      box-shadow: 0 14px 28px -5px rgba(108, 99, 255, 0.6);
       color: white;
     }
+
     .btn-outline-primary {
       border: 2px solid var(--primary);
       background: transparent;
@@ -281,8 +327,16 @@
       padding: 3rem 0 2rem;
       margin-top: 5rem;
     }
-    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .footer a:hover { color: var(--primary); }
+
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover {
+      color: var(--primary);
+    }
 
     /* toast notification – responsive, centered */
     .toast-notification {
@@ -294,7 +348,7 @@
       color: var(--text);
       padding: 0.9rem 2rem;
       border-radius: 60px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
       z-index: 9999;
       font-weight: 500;
       display: flex;
@@ -305,10 +359,17 @@
       max-width: 90vw;
       white-space: nowrap;
     }
+
     @media (max-width: 500px) {
-      .toast-notification { white-space: normal; text-align: center; }
+      .toast-notification {
+        white-space: normal;
+        text-align: center;
+      }
     }
-    .toast-notification.show { transform: translateX(-50%) translateY(0); }
+
+    .toast-notification.show {
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* animations */
     .animate-up {
@@ -316,16 +377,23 @@
       transform: translateY(25px);
       animation: slideUpFade 0.5s forwards;
     }
-    @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
+
+    @keyframes slideUpFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* spacing & utils */
     .section-title {
-      font-size: clamp(1.8rem,5vw,2.5rem);
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
       font-weight: 600;
       margin-bottom: 2.5rem;
       position: relative;
       display: inline-block;
     }
+
     .section-title::after {
       content: '';
       position: absolute;
@@ -336,20 +404,37 @@
       background: var(--gradient);
       border-radius: 4px;
     }
-    .text-muted-custom { color: var(--text-muted); }
+
+    .text-muted-custom {
+      color: var(--text-muted);
+    }
 
     /* fix mobile tap highlights */
-    .btn, .nav-link, .navbar-toggler, .theme-toggle-btn {
+    .btn,
+    .nav-link,
+    .navbar-toggler,
+    .theme-toggle-btn {
       -webkit-tap-highlight-color: transparent;
     }
 
     /* print styles */
     @media print {
-      .navbar, .footer, .theme-toggle-btn { display: none; }
-      body { padding-top: 0; background: white; color: black; }
+
+      .navbar,
+      .footer,
+      .theme-toggle-btn {
+        display: none;
+      }
+
+      body {
+        padding-top: 0;
+        background: white;
+        color: black;
+      }
     }
   </style>
 </head>
+
 <body data-theme="light">
   <!-- mobile backdrop (for closing menu) -->
   <div class="mobile-backdrop" id="mobileBackdrop"></div>
@@ -384,9 +469,11 @@
     <div class="row text-center mt-4 mt-md-5 pt-3">
       <div class="col-12">
         <h1 class="hero-title animate-up">ThemeSwitch Pro</h1>
-        <p class="hero-subtitle animate-up" style="animation-delay: 0.1s;">Intelligent dark/light mode with fluid animations, built for every screen.</p>
+        <p class="hero-subtitle animate-up" style="animation-delay: 0.1s;">Intelligent dark/light mode with fluid
+          animations, built for every screen.</p>
         <div class="mt-4 animate-up" style="animation-delay: 0.2s;">
-          <button id="heroToggleBtn" class="btn-gradient me-2 mb-2"><i class="fas fa-sync-alt me-2"></i>Toggle theme</button>
+          <button id="heroToggleBtn" class="btn-gradient me-2 mb-2"><i class="fas fa-sync-alt me-2"></i>Toggle
+            theme</button>
           <a href="#" class="btn-outline-primary btn d-inline-block"><i class="fas fa-rocket me-2"></i>Features</a>
         </div>
       </div>
@@ -406,9 +493,18 @@
             <h4 class="fw-semibold mb-3"><i class="fas fa-palette me-2" style="color:var(--primary);"></i>Live demo</h4>
             <div class="demo-area mb-3">
               <div class="row g-2 text-center">
-                <div class="col-4"><div class="card p-3"><i class="fas fa-mobile-alt fa-2x" style="color:var(--primary);"></i><small>mobile</small></div></div>
-                <div class="col-4"><div class="card p-3"><i class="fas fa-tablet-alt fa-2x" style="color:var(--secondary);"></i><small>tablet</small></div></div>
-                <div class="col-4"><div class="card p-3"><i class="fas fa-desktop fa-2x" style="color:var(--accent);"></i><small>desktop</small></div></div>
+                <div class="col-4">
+                  <div class="card p-3"><i class="fas fa-mobile-alt fa-2x"
+                      style="color:var(--primary);"></i><small>mobile</small></div>
+                </div>
+                <div class="col-4">
+                  <div class="card p-3"><i class="fas fa-tablet-alt fa-2x"
+                      style="color:var(--secondary);"></i><small>tablet</small></div>
+                </div>
+                <div class="col-4">
+                  <div class="card p-3"><i class="fas fa-desktop fa-2x"
+                      style="color:var(--accent);"></i><small>desktop</small></div>
+                </div>
               </div>
             </div>
             <div class="progress" style="height: 12px; background: rgba(128,128,128,0.2);">
@@ -462,14 +558,20 @@
         <div class="col-lg-6">
           <h4 class="fw-bold mb-3">Advanced tech stack</h4>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> CSS custom properties – instant theming</li>
-            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> LocalStorage – remembers your choice</li>
-            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> GPU accelerated transitions</li>
-            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> Touch optimized + keyboard shortcuts (Alt+T)</li>
+            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> CSS custom properties
+              – instant theming</li>
+            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> LocalStorage –
+              remembers your choice</li>
+            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> GPU accelerated
+              transitions</li>
+            <li class="mb-2"><i class="fas fa-check-circle me-2" style="color:var(--accent);"></i> Touch optimized +
+              keyboard shortcuts (Alt+T)</li>
           </ul>
         </div>
         <div class="col-lg-6 mt-4 mt-lg-0 text-center">
-          <div style="font-size: 5rem; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;"><i class="fas fa-microchip"></i></div>
+          <div
+            style="font-size: 5rem; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+            <i class="fas fa-microchip"></i></div>
         </div>
       </div>
     </div>
@@ -492,16 +594,23 @@
         </div>
         <div class="col-lg-2 col-md-6">
           <h6>Product</h6>
-          <ul class="list-unstyled"><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li></ul>
+          <ul class="list-unstyled">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
         </div>
         <div class="col-lg-2 col-md-6">
           <h6>Resources</h6>
-          <ul class="list-unstyled"><li><a href="#">Docs</a></li><li><a href="#">API</a></li></ul>
+          <ul class="list-unstyled">
+            <li><a href="#">Docs</a></li>
+            <li><a href="#">API</a></li>
+          </ul>
         </div>
         <div class="col-lg-4">
           <h6>Subscribe</h6>
           <div class="input-group">
-            <input type="email" class="form-control" placeholder="Email" style="background:var(--card-bg); border: none; color:var(--text);">
+            <input type="email" class="form-control" placeholder="Email"
+              style="background:var(--card-bg); border: none; color:var(--text);">
             <button class="btn-gradient" style="padding:0.6rem 1.5rem;">Go</button>
           </div>
         </div>
@@ -520,7 +629,7 @@
 
   <!-- main script – improved theme manager + mobile + all device enhancements -->
   <script>
-    (function() {
+    (function () {
       'use strict';
 
       // ------ DOM elements ------
@@ -540,8 +649,8 @@
       const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
       // ------ state ------
-      let currentTheme = localStorage.getItem('theme-preference') || 
-                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      let currentTheme = localStorage.getItem('theme-preference') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       let toastTimer = null;
 
       // apply theme on load
@@ -691,13 +800,32 @@
   </script>
   <!-- style adjustments for animate-up (visible after page load) -->
   <style>
-    .animate-up { animation: slideUpFade 0.6s forwards; }
+    .animate-up {
+      animation: slideUpFade 0.6s forwards;
+    }
+
     /* ensure hidden before animation? they start opacity 0, but we want initial visible after load */
-    .animate-up { opacity: 1 !important; transform: translateY(0) !important; } /* remove if you want fresh animation, but content shows anyway */
+    .animate-up {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* remove if you want fresh animation, but content shows anyway */
     /* but we already set default to 0 with class. to preserve animation we remove the override? better let them animate */
     /* override for no fouc: */
-    .animate-up { opacity: 0; transform: translateY(25px); } /* will be animated */
-    @media (prefers-reduced-motion: reduce) { .animate-up { opacity: 1; transform: none; } }
+    .animate-up {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    /* will be animated */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-up {
+        opacity: 1;
+        transform: none;
+      }
+    }
   </style>
 </body>
+
 </html>
