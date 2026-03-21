@@ -1,4 +1,4 @@
- <script>
+
     (function () {
       // DOM Elements
       const body = document.body;
@@ -174,4 +174,4 @@
 
       console.log('Theme system initialized. Current theme:', currentTheme);
     })();
-  </script>
+  
