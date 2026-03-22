@@ -1,4 +1,4 @@
- <script>
+
     (function () {
       // DOM Elements
       const body = document.body;
@@ -195,4 +195,4 @@
 
       console.log('✨ ThemeSwitch Pro fully loaded — responsive & interactive');
     })();
-  </script>
+  
