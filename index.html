@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+  <title>ThemeSwitch Pro — Intelligent Theme Experience</title>
+  <!-- Bootstrap 5 CSS (minimal, only grid & utilities) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Swiper JS for testimonials -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Prevent horizontal overflow */
+    html, body {
+      overflow-x: hidden !important;
+      width: 100%;
+      position: relative;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.4s ease, color 0.3s ease;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Theme Variables */
+    :root {
+      --primary: #6366f1;
+      --primary-rgb: 99, 102, 241;
+      --primary-dark: #4f46e5;
+      --secondary: #ec489a;
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --nav-bg: rgba(255, 255, 255, 0.98);
+      --footer-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      --gradient-2: linear-gradient(135deg, #ec489a 0%, #f43f5e 100%);
+      --gradient-3: linear-gradient(135deg, #6366f1, #ec489a);
+    }
+
+    [data-theme="dark"] {
+      --primary: #818cf8;
+      --primary-rgb: 129, 140, 248;
+      --primary-dark: #6366f1;
+      --secondary: #f472b6;
+      --accent: #2dd4bf;
+      --bg-primary: #0a0c10;
+      --bg-secondary: #111317;
+      --bg-tertiary: #1a1d24;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --card-bg: #111317;
+      --card-border: #1f2937;
+      --nav-bg: rgba(10, 12, 16, 0.98);
+      --footer-bg: #0c0e12;
+      --border-color: #1f2937;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+      --gradient-1: linear-gradient(135deg, #818cf8 0%, #a855f7 100%);
+      --gradient-2: linear-gradient(135deg, #f472b6 0%, #fb7185 100%);
+      --gradient-3: linear-gradient(135deg, #818cf8, #f472b6);
+    }
+
+    /* Typography */
+    p, span, li, a:not(.btn), label { color: var(--text-secondary); }
+    h1, h2, h3, h4, h5, h6 { color: var(--text-primary); }
+    .text-muted { color: var(--text-muted) !important; }
+
+    /* Enhanced Mobile-First Navbar */
+    .navbar {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      width: auto;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      z-index: 1100;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    @media (min-width: 768px) {
+      .navbar {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: calc(100% - 40px);
+        max-width: 1300px;
+        top: 16px;
+        padding: 8px 24px;
+      }
+    }
+    
+    .navbar.scrolled { top: 8px; box-shadow: var(--shadow-md); }
+    .navbar-brand {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .navbar-brand i { font-size: 1.3rem; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .nav-menu {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin: 0;
+      list-style: none;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 40px;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .nav-link i { font-size: 0.85rem; }
+    .nav-link:hover, .nav-link.active { background: var(--gradient-1); color: white !important; transform: translateY(-2px); }
+    
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gradient-2);
+      border: none;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.4s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+    }
+    .theme-toggle:hover { transform: rotate(20deg) scale(1.05); }
+    .mobile-toggle {
+      display: flex;
+      background: var(--gradient-1);
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 30px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    @media (min-width: 861px) {
+      .mobile-toggle { display: none; }
+      .nav-menu { display: flex !important; }
+    }
+    
+    @media (max-width: 860px) {
+      .nav-menu {
+        position: fixed;
+        top: 75px;
+        left: 12px;
+        right: 12px;
+        background: var(--card-bg);
+        backdrop-filter: blur(25px);
+        border-radius: 28px;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+        pointer-events: none;
+        z-index: 1050;
+        gap: 8px;
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+      .nav-menu.show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+      .nav-link {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 0.95rem;
+        white-space: normal;
+      }
+      .theme-toggle {
+        width: 100%;
+        border-radius: 40px;
+        margin: 8px 0 0 0;
+        padding: 12px;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 16px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .hero { padding: 150px 0 70px; }
+    }
+    
+    .hero-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      top: -100px;
+      right: -50px;
+      pointer-events: none;
+      animation: floatGlow 8s ease-in-out infinite;
+    }
+    @media (min-width: 768px) {
+      .hero-glow { width: 500px; height: 500px; top: -150px; right: -80px; }
+    }
+    
+    @keyframes floatGlow { 0%,100% { transform: translate(0,0) scale(1); opacity: 0.5; } 50% { transform: translate(-20px, 20px) scale(1.05); opacity: 0.8; } }
+    
+    .hero-title {
+      font-size: clamp(2rem, 7vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, var(--text-primary), var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .btn-modern {
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      gap: 8px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    @media (min-width: 768px) {
+      .btn-modern { padding: 12px 28px; font-size: 0.95rem; }
+    }
+    
+    .btn-primary-grad { background: var(--gradient-1); color: white !important; box-shadow: 0 8px 20px -12px var(--primary); }
+    .btn-primary-grad:hover { transform: translateY(-3px) scale(1.02); }
+    .btn-outline-glass { background: rgba(var(--primary-rgb), 0.08); border: 1px solid var(--border-color); backdrop-filter: blur(4px); color: var(--text-primary); }
+    .btn-outline-glass:hover { background: var(--primary); color: white !important; }
+    .stat-number { font-size: 1.8rem; font-weight: 800; background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    @media (min-width: 768px) { .stat-number { font-size: 2.2rem; } }
+
+    /* Cards - Responsive */
+    .feature-card, .service-card, .testimonial-card, .blog-card, .pricing-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 20px;
+      transition: all 0.4s;
+      border: 1px solid var(--border-color);
+      height: 100%;
+    }
+    @media (min-width: 768px) {
+      .feature-card, .service-card, .testimonial-card, .blog-card, .pricing-card { padding: 28px; border-radius: 32px; }
+    }
+    
+    .feature-card:hover, .service-card:hover, .blog-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow-lg); }
+    .feature-icon-wrap { width: 55px; height: 55px; background: var(--gradient-1); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.5rem; color: white; }
+    @media (min-width: 768px) { .feature-icon-wrap { width: 65px; height: 65px; font-size: 1.8rem; } }
+    
+    .pricing-card { padding: 24px 20px; }
+    @media (min-width: 768px) { .pricing-card { padding: 32px 24px; } }
+    .pricing-card.popular { border: 2px solid transparent; box-shadow: 0 20px 35px -12px rgba(99,102,241,0.3); position: relative; }
+    .popular-badge { position: absolute; top: 12px; right: 12px; background: var(--gradient-2); color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; }
+    @media (min-width: 768px) { .popular-badge { top: 16px; right: 20px; padding: 4px 14px; font-size: 0.7rem; } }
+    .price { font-size: 2.5rem; font-weight: 800; background: var(--gradient-3); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin: 12px 0; }
+    @media (min-width: 768px) { .price { font-size: 3rem; margin: 16px 0; } }
+
+    /* Testimonial Swiper */
+    .testimonial-card { text-align: center; padding: 24px; }
+    .testimonial-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.5rem; color: white; }
+    .swiper { padding: 16px 0 40px; overflow: visible; }
+    .swiper-pagination-bullet-active { background: var(--primary) !important; }
+
+    /* Blog Cards */
+    .blog-card img { width: 100%; border-radius: 20px; margin-bottom: 12px; aspect-ratio: 16/9; object-fit: cover; }
+    .blog-tag { display: inline-block; padding: 4px 12px; background: var(--gradient-1); color: white; border-radius: 30px; font-size: 0.7rem; margin-bottom: 10px; }
+
+    /* Contact Form */
+    .glass-form { background: var(--card-bg); border-radius: 28px; padding: 24px; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
+    @media (min-width: 768px) { .glass-form { padding: 36px; border-radius: 40px; } }
+    .form-modern { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 20px; padding: 12px 18px; width: 100%; color: var(--text-primary); transition: all 0.2s; font-size: 0.9rem; }
+    .form-modern:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2); }
+
+    /* Toast */
+    .toast-notify { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 50px; display: flex; gap: 10px; z-index: 9999; transition: transform 0.4s; box-shadow: var(--shadow-xl); font-size: 0.85rem; white-space: nowrap; }
+    @media (max-width: 480px) { .toast-notify { white-space: normal; max-width: 90%; text-align: center; } }
+    .toast-notify.show { transform: translateX(-50%) translateY(0); }
+
+    /* Footer */
+    footer { background: var(--footer-bg); border-top: 1px solid var(--border-color); margin-top: 60px; padding: 40px 0 24px; }
+    @media (min-width: 768px) { footer { margin-top: 80px; padding: 50px 0 30px; } }
+    footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--primary); }
+
+    /* Animations */
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-up { animation: slideUp 0.5s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
+
+    /* Container fixes */
+    .container { padding-left: 16px; padding-right: 16px; width: 100%; max-width: 100%; }
+    @media (min-width: 576px) { .container { max-width: 540px; margin: 0 auto; } }
+    @media (min-width: 768px) { .container { max-width: 720px; } }
+    @media (min-width: 992px) { .container { max-width: 960px; } }
+    @media (min-width: 1200px) { .container { max-width: 1140px; } }
+    
+    .row { margin-left: -8px; margin-right: -8px; }
+    .row > [class*="col-"] { padding-left: 8px; padding-right: 8px; }
+    
+    /* Fix swiper overflow */
+    .swiper-wrapper { display: flex; }
+  </style>
+</head>
+
+<body data-theme="light">
+  <nav class="navbar" id="mainNavbar">
+    <div class="container-fluid d-flex justify-content-between align-items-center p-0">
+      <a href="#" class="navbar-brand"><i class="fas fa-mask"></i> ThemeSwitchPro</a>
+      <button class="mobile-toggle d-flex d-lg-none" id="mobileToggle"><i class="fas fa-bars"></i></button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#services" class="nav-link"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="#features" class="nav-link"><i class="fas fa-star"></i> Features</a></li>
+        <li><a href="#pricing" class="nav-link"><i class="fas fa-gem"></i> Pricing</a></li>
+        <li><a href="#testimonials" class="nav-link"><i class="fas fa-comments"></i> Testimonials</a></li>
+        <li><a href="#blog" class="nav-link"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><button class="theme-toggle" id="themeToggleBtn"><i class="fas fa-moon" id="themeIcon"></i></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <div class="animate-up">
+              <h1 class="hero-title">Intelligent Theme <span style="background:var(--gradient-3); -webkit-background-clip:text;">Switching</span> for Modern Apps</h1>
+              <p class="fs-5 mt-3" style="color: var(--text-secondary);">Adaptive dark/light mode, smooth transitions, stunning animations, and perfect contrast across all devices.</p>
+              <div class="d-flex gap-2 mt-4 flex-wrap">
+                <button class="btn-modern btn-primary-grad" id="demoMagicBtn"><i class="fas fa-bolt"></i> Try Demo</button>
+                <a href="#pricing" class="btn-modern btn-outline-glass"><i class="fas fa-crown"></i> Get Started</a>
+              </div>
+              <div class="d-flex gap-3 mt-4 flex-wrap justify-content-between justify-content-lg-start">
+                <div><div class="stat-number">15k+</div><div class="text-muted small">Active Users</div></div>
+                <div><div class="stat-number" id="satisfactionRate">94%</div><div class="text-muted small">Satisfaction</div></div>
+                <div><div class="stat-number">4.9</div><div class="text-muted small">Rating</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card text-center animate-up delay-1">
+              <i class="fas fa-sliders-h" style="font-size: 3rem; background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;"></i>
+              <h3 class="mt-2 h4">Live Theme Sandbox</h3>
+              <p class="text-muted small">Toggle theme and see realtime color shifts, gradients, perfect contrast.</p>
+              <div class="row mt-3">
+                <div class="col-4"><i class="fas fa-moon fa-2x" style="color: var(--primary);"></i><p class="small mt-1 text-muted">Dark fusion</p></div>
+                <div class="col-4"><i class="fas fa-sun fa-2x" style="color: var(--secondary);"></i><p class="small mt-1 text-muted">Light aura</p></div>
+                <div class="col-4"><i class="fas fa-cloud-moon fa-2x" style="color: var(--accent);"></i><p class="small mt-1 text-muted">Auto sync</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container my-4 my-md-5 py-2 py-md-4">
+      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">🌟 Our Premium Services</h2><p class="text-muted">Comprehensive theming solutions for every need</p></div>
+      <div class="row g-3 g-md-4">
+        <div class="col-sm-6 col-lg-4"><div class="service-card animate-up"><div class="feature-icon-wrap"><i class="fas fa-paint-brush"></i></div><h4 class="h5">Custom Theme Design</h4><p class="text-muted small">Bespoke color schemes, typography, and visual identity tailored to your brand.</p></div></div>
+        <div class="col-sm-6 col-lg-4"><div class="service-card animate-up delay-1"><div class="feature-icon-wrap"><i class="fas fa-code"></i></div><h4 class="h5">Integration API</h4><p class="text-muted small">Seamless API integration for dynamic theme switching in any framework.</p></div></div>
+        <div class="col-sm-6 col-lg-4"><div class="service-card animate-up delay-2"><div class="feature-icon-wrap"><i class="fas fa-mobile-alt"></i></div><h4 class="h5">Responsive Solutions</h4><p class="text-muted small">Perfect theming across mobile, tablet, desktop with adaptive layouts.</p></div></div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="container my-4 my-md-5">
+      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">✨ Powerful Features</h2><p class="text-muted">Everything you need for perfect theme management</p></div>
+      <div class="row g-3 g-md-4">
+        <div class="col-sm-6 col-lg-4"><div class="feature-card animate-up"><div class="feature-icon-wrap"><i class="fas fa-moon-stars"></i></div><h4 class="h5">Adaptive Dark Mode</h4><p class="text-muted small">Deep contrast, eye-care palettes with dynamic transitions.</p></div></div>
+        <div class="col-sm-6 col-lg-4"><div class="feature-card animate-up delay-1"><div class="feature-icon-wrap"><i class="fas fa-chart-line"></i></div><h4 class="h5">System-Aware Sync</h4><p class="text-muted small">Respects OS preference & time of day automatically.</p></div></div>
+        <div class="col-sm-6 col-lg-4"><div class="feature-card animate-up delay-2"><div class="feature-icon-wrap"><i class="fas fa-database"></i></div><h4 class="h5">Persistent Memory</h4><p class="text-muted small">LocalStorage keeps your choice across visits.</p></div></div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="container my-4 my-md-5 py-2 py-md-4">
+      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">Flexible Plans</h2><p class="text-muted">Choose the perfect plan for your needs</p></div>
+      <div class="row g-3 g-md-4">
+        <div class="col-md-4"><div class="pricing-card animate-up"><h3 class="h4">Starter</h3><div class="price">$19<span style="font-size:1rem;">/mo</span></div><ul class="list-unstyled mt-3"><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Core themes</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> 5 color variants</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Community support</li></ul><button class="btn-modern btn-outline-glass w-100 mt-2 pricing-btn">Get started</button></div></div>
+        <div class="col-md-4"><div class="pricing-card popular animate-up delay-1"><div class="popular-badge"><i class="fas fa-fire"></i> POPULAR</div><h3 class="h4">Pro</h3><div class="price">$49<span style="font-size:1rem;">/mo</span></div><ul class="list-unstyled mt-3"><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Unlimited schemes</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Advanced API access</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Priority 24/7 support</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Custom animations</li></ul><button class="btn-modern btn-primary-grad w-100 mt-2 pricing-btn">Go Pro</button></div></div>
+        <div class="col-md-4"><div class="pricing-card animate-up delay-2"><h3 class="h4">Enterprise</h3><div class="price">$99<span style="font-size:1rem;">/mo</span></div><ul class="list-unstyled mt-3"><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> White-label theming</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Dedicated manager</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> SLA guarantee</li></ul><button class="btn-modern btn-outline-glass w-100 mt-2 pricing-btn">Contact sales</button></div></div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="container my-4 my-md-5 py-2 py-md-4">
+      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">💬 What Our Clients Say</h2><p class="text-muted">Trusted by developers and designers worldwide</p></div>
+      <div class="swiper testimonialSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"ThemeSwitchPro transformed our app's UX. The dark mode is flawless and the API is incredibly easy to integrate."</p><h5 class="mt-2 mb-0 h6">Sarah Johnson</h5><small class="text-muted">Lead Developer</small></div></div>
+          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"Best theme switching solution I've ever used. Smooth transitions and perfect accessibility across all devices."</p><h5 class="mt-2 mb-0 h6">Michael Chen</h5><small class="text-muted">Product Designer</small></div></div>
+          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"The auto-detection feature is brilliant. Our users love how it respects their system preferences."</p><h5 class="mt-2 mb-0 h6">Emily Rodriguez</h5><small class="text-muted">CTO, StartupHub</small></div></div>
+          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"Incredible support team and regular updates. The gradient generator is a game-changer!"</p><h5 class="mt-2 mb-0 h6">David Kim</h5><small class="text-muted">Full Stack Engineer</small></div></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="container my-4 my-md-5 py-2 py-md-4">
+      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">📝 Latest from Blog</h2><p class="text-muted">Insights, tutorials, and updates</p></div>
+      <div class="row g-3 g-md-4">
+        <div class="col-md-4"><div class="blog-card animate-up"><img src="https://picsum.photos/400/250?random=1" alt="Blog"><span class="blog-tag">Tutorial</span><h4 class="h5">Mastering Dark Mode Design</h4><p class="text-muted small">Learn best practices for implementing perfect dark mode.</p><a href="#" class="text-primary small" style="text-decoration: none;">Read more →</a></div></div>
+        <div class="col-md-4"><div class="blog-card animate-up delay-1"><img src="https://picsum.photos/400/250?random=2" alt="Blog"><span class="blog-tag">Tips</span><h4 class="h5">10 Accessibility Tips for Theming</h4><p class="text-muted small">Ensure your themes are accessible to all users.</p><a href="#" class="text-primary small" style="text-decoration: none;">Read more →</a></div></div>
+        <div class="col-md-4"><div class="blog-card animate-up delay-2"><img src="https://picsum.photos/400/250?random=3" alt="Blog"><span class="blog-tag">Update</span><h4 class="h5">New Features in v3.0</h4><p class="text-muted small">Explore the latest enhancements and improvements.</p><a href="#" class="text-primary small" style="text-decoration: none;">Read more →</a></div></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container my-4 my-md-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6"><div class="glass-form animate-up"><h3 class="mb-3 h4"><i class="fas fa-comment-dots me-2"></i> Get in Touch</h3><form id="contactFormPro"><div class="mb-3"><input type="text" class="form-modern" placeholder="Full name" required></div><div class="mb-3"><input type="email" class="form-modern" placeholder="Email address" required></div><div class="mb-3"><textarea rows="4" class="form-modern" placeholder="Your message" required></textarea></div><button type="submit" class="btn-modern btn-primary-grad w-100"><i class="fas fa-paper-plane"></i> Send Message</button></form></div></div>
+        <div class="col-lg-6"><div class="feature-card text-center p-4 p-md-5 animate-up delay-1"><i class="fas fa-headset fa-3x" style="color: var(--primary);"></i><h4 class="mt-3 h5">24/7 Support</h4><p class="text-muted small">Our team is always here to help</p><div class="small"><i class="fas fa-envelope me-2"></i> support@themeswitch.pro</div><div class="mt-2 small"><i class="fas fa-phone me-2"></i> +1 (555) 789-0123</div></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5"><div class="d-flex gap-2 align-items-center"><i class="fas fa-palette fa-2x" style="color: var(--primary);"></i><h4 class="mb-0 h5">ThemeSwitchPro</h4></div><p class="mt-2 text-muted small">Intelligent theming engine for modern web — elevate user experience.</p></div>
+        <div class="col-6 col-md-3 col-lg-2"><h5 class="h6">Product</h5><ul class="list-unstyled small"><li class="mb-2"><a href="#features">Features</a></li><li class="mb-2"><a href="#pricing">Pricing</a></li><li class="mb-2"><a href="#services">Services</a></li></ul></div>
+        <div class="col-6 col-md-3 col-lg-2"><h5 class="h6">Resources</h5><ul class="list-unstyled small"><li class="mb-2"><a href="#blog">Blog</a></li><li class="mb-2"><a href="#">Docs</a></li><li class="mb-2"><a href="#">API</a></li></ul></div>
+        <div class="col-md-6 col-lg-3"><h5 class="h6">Subscribe</h5><div class="d-flex gap-2"><input type="email" class="form-modern" placeholder="Email" style="border-radius: 50px; font-size: 0.85rem; padding: 8px 14px;" id="subscribeEmail"><button class="btn-modern btn-primary-grad" id="subscribeBtn" style="border-radius: 50px; padding: 8px 16px; font-size: 0.8rem;">Join</button></div></div>
+      </div>
+      <hr class="mt-4"><div class="text-center small text-muted">© 2025 ThemeSwitch Pro — Intelligent Theme Experience</div>
+    </div>
+  </footer>
+
+  <div class="toast-notify" id="globalToast"><i class="fas fa-sparkle" style="color: var(--success);"></i><span id="toastMsg">Theme toggled</span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    (function() {
+      const body = document.body;
+      const themeBtn = document.getElementById('themeToggleBtn');
+      const demoMagic = document.getElementById('demoMagicBtn');
+      const themeIcon = document.getElementById('themeIcon');
+      const mobileToggle = document.getElementById('mobileToggle');
+      const navMenu = document.getElementById('navMenu');
+      const toastEl = document.getElementById('globalToast');
+      const toastMsgSpan = document.getElementById('toastMsg');
+      const satisfactionSpan = document.getElementById('satisfactionRate');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const navbar = document.getElementById('mainNavbar');
+
+      let currentTheme = localStorage.getItem('theme-pref');
+      if (!currentTheme) currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+      function applyTheme(theme) {
+        body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme-pref', theme);
+        if (themeIcon) themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        if (satisfactionSpan) satisfactionSpan.textContent = theme === 'dark' ? '96%' : '94%';
+      }
+      applyTheme(currentTheme);
+
+      function showToast(msg) { toastMsgSpan.innerHTML = msg; toastEl.classList.add('show'); setTimeout(() => toastEl.classList.remove('show'), 2800); }
+      function toggleTheme() { currentTheme = currentTheme === 'dark' ? 'light' : 'dark'; applyTheme(currentTheme); showToast(`✨ Switched to ${currentTheme === 'dark' ? 'Nightfall' : 'Radiance'} mode`); }
+      themeBtn?.addEventListener('click', toggleTheme);
+      demoMagic?.addEventListener('click', toggleTheme);
+
+      // Mobile menu
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('show'); mobileToggle.innerHTML = navMenu.classList.contains('show') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; });
+        document.addEventListener('click', (e) => { if (window.innerWidth <= 860 && navMenu.classList.contains('show') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) { navMenu.classList.remove('show'); mobileToggle.innerHTML = '<i class="fas fa-bars"></i>'; } });
+        navLinks.forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 860) { navMenu.classList.remove('show'); mobileToggle.innerHTML = '<i class="fas fa-bars"></i>'; } }); });
+      }
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      });
+
+      // Active nav
+      const sections = document.querySelectorAll('section[id]');
+      function setActiveNav() {
+        let scrollPos = window.scrollY + 100, found = false;
+        sections.forEach(section => {
+          if (section.id) { const top = section.offsetTop, bottom = top + section.offsetHeight; if (scrollPos >= top && scrollPos < bottom) { found = true; navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === `#${section.id}`) link.classList.add('active'); }); } }
+        });
+        if (!found && window.scrollY < 60) { navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' || link.getAttribute('href') === '#home') link.classList.add('active'); }); }
+      }
+      window.addEventListener('scroll', () => { setActiveNav(); if (window.scrollY > 20) navbar?.classList.add('scrolled'); else navbar?.classList.remove('scrolled'); });
+      setActiveNav();
+
+      document.getElementById('contactFormPro')?.addEventListener('submit', (e) => { e.preventDefault(); showToast('📬 Message sent! We\'ll reply soon.'); e.target.reset(); });
+      document.getElementById('subscribeBtn')?.addEventListener('click', () => { const email = document.getElementById('subscribeEmail')?.value.trim(); if (email && email.includes('@')) { showToast('🎉 Subscribed!'); document.getElementById('subscribeEmail').value = ''; } else showToast('✉️ Enter valid email'); });
+      document.querySelectorAll('.pricing-btn').forEach(btn => btn.addEventListener('click', () => showToast('🚀 Demo — upgrade flow would start here')));
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => { if (!localStorage.getItem('theme-pref')) { currentTheme = e.matches ? 'dark' : 'light'; applyTheme(currentTheme); showToast(`🔄 System theme synced: ${currentTheme} mode`); } });
+      document.addEventListener('keydown', (e) => { if (e.altKey && e.key === 't') { e.preventDefault(); toggleTheme(); } });
+
+      // Swiper
+      new Swiper('.testimonialSwiper', { slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: { delay: 4000, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true }, breakpoints: { 640: { slidesPerView: 2, spaceBetween: 20 }, 1024: { slidesPerView: 3, spaceBetween: 24 } } });
+    })();
+  </script>
+</body>
+
+</html>
