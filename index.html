@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
   <title>ThemeSwitch Pro — Intelligent Theme Experience</title>
   <!-- Bootstrap 5 CSS (minimal, only grid & utilities) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -12,7 +13,9 @@
   <!-- Swiper JS for testimonials -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -21,7 +24,8 @@
     }
 
     /* Prevent horizontal overflow */
-    html, body {
+    html,
+    body {
       overflow-x: hidden !important;
       width: 100%;
       position: relative;
@@ -93,9 +97,26 @@
     }
 
     /* Typography */
-    p, span, li, a:not(.btn), label { color: var(--text-secondary); }
-    h1, h2, h3, h4, h5, h6 { color: var(--text-primary); }
-    .text-muted { color: var(--text-muted) !important; }
+    p,
+    span,
+    li,
+    a:not(.btn),
+    label {
+      color: var(--text-secondary);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--text-primary);
+    }
+
+    .text-muted {
+      color: var(--text-muted) !important;
+    }
 
     /* Enhanced Mobile-First Navbar */
     .navbar {
@@ -113,7 +134,7 @@
       transition: all 0.3s ease;
       box-shadow: var(--shadow-sm);
     }
-    
+
     @media (min-width: 768px) {
       .navbar {
         left: 50%;
@@ -125,8 +146,12 @@
         padding: 8px 24px;
       }
     }
-    
-    .navbar.scrolled { top: 8px; box-shadow: var(--shadow-md); }
+
+    .navbar.scrolled {
+      top: 8px;
+      box-shadow: var(--shadow-md);
+    }
+
     .navbar-brand {
       font-family: 'Space Grotesk', monospace;
       font-weight: 700;
@@ -139,8 +164,15 @@
       align-items: center;
       gap: 6px;
     }
-    .navbar-brand i { font-size: 1.3rem; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    
+
+    .navbar-brand i {
+      font-size: 1.3rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .nav-menu {
       display: flex;
       gap: 6px;
@@ -148,7 +180,7 @@
       margin: 0;
       list-style: none;
     }
-    
+
     .nav-link {
       font-weight: 500;
       padding: 8px 14px;
@@ -162,9 +194,18 @@
       font-size: 0.85rem;
       white-space: nowrap;
     }
-    .nav-link i { font-size: 0.85rem; }
-    .nav-link:hover, .nav-link.active { background: var(--gradient-1); color: white !important; transform: translateY(-2px); }
-    
+
+    .nav-link i {
+      font-size: 0.85rem;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: var(--gradient-1);
+      color: white !important;
+      transform: translateY(-2px);
+    }
+
     .theme-toggle {
       width: 38px;
       height: 38px;
@@ -180,7 +221,11 @@
       justify-content: center;
       margin-left: 4px;
     }
-    .theme-toggle:hover { transform: rotate(20deg) scale(1.05); }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg) scale(1.05);
+    }
+
     .mobile-toggle {
       display: flex;
       background: var(--gradient-1);
@@ -194,12 +239,17 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     @media (min-width: 861px) {
-      .mobile-toggle { display: none; }
-      .nav-menu { display: flex !important; }
+      .mobile-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        display: flex !important;
+      }
     }
-    
+
     @media (max-width: 860px) {
       .nav-menu {
         position: fixed;
@@ -222,11 +272,13 @@
         max-height: 70vh;
         overflow-y: auto;
       }
+
       .nav-menu.show {
         transform: translateY(0);
         opacity: 1;
         pointer-events: all;
       }
+
       .nav-link {
         width: 100%;
         justify-content: center;
@@ -234,6 +286,7 @@
         font-size: 0.95rem;
         white-space: normal;
       }
+
       .theme-toggle {
         width: 100%;
         border-radius: 40px;
@@ -248,26 +301,47 @@
       position: relative;
       overflow: hidden;
     }
+
     @media (min-width: 768px) {
-      .hero { padding: 150px 0 70px; }
+      .hero {
+        padding: 150px 0 70px;
+      }
     }
-    
+
     .hero-glow {
       position: absolute;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
       top: -100px;
       right: -50px;
       pointer-events: none;
       animation: floatGlow 8s ease-in-out infinite;
     }
+
     @media (min-width: 768px) {
-      .hero-glow { width: 500px; height: 500px; top: -150px; right: -80px; }
+      .hero-glow {
+        width: 500px;
+        height: 500px;
+        top: -150px;
+        right: -80px;
+      }
     }
-    
-    @keyframes floatGlow { 0%,100% { transform: translate(0,0) scale(1); opacity: 0.5; } 50% { transform: translate(-20px, 20px) scale(1.05); opacity: 0.8; } }
-    
+
+    @keyframes floatGlow {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: translate(-20px, 20px) scale(1.05);
+        opacity: 0.8;
+      }
+    }
+
     .hero-title {
       font-size: clamp(2rem, 7vw, 4.5rem);
       font-weight: 800;
@@ -278,7 +352,7 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .btn-modern {
       padding: 10px 22px;
       border-radius: 50px;
@@ -291,19 +365,57 @@
       cursor: pointer;
       font-size: 0.9rem;
     }
+
     @media (min-width: 768px) {
-      .btn-modern { padding: 12px 28px; font-size: 0.95rem; }
+      .btn-modern {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+      }
     }
-    
-    .btn-primary-grad { background: var(--gradient-1); color: white !important; box-shadow: 0 8px 20px -12px var(--primary); }
-    .btn-primary-grad:hover { transform: translateY(-3px) scale(1.02); }
-    .btn-outline-glass { background: rgba(var(--primary-rgb), 0.08); border: 1px solid var(--border-color); backdrop-filter: blur(4px); color: var(--text-primary); }
-    .btn-outline-glass:hover { background: var(--primary); color: white !important; }
-    .stat-number { font-size: 1.8rem; font-weight: 800; background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    @media (min-width: 768px) { .stat-number { font-size: 2.2rem; } }
+
+    .btn-primary-grad {
+      background: var(--gradient-1);
+      color: white !important;
+      box-shadow: 0 8px 20px -12px var(--primary);
+    }
+
+    .btn-primary-grad:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .btn-outline-glass {
+      background: rgba(var(--primary-rgb), 0.08);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(4px);
+      color: var(--text-primary);
+    }
+
+    .btn-outline-glass:hover {
+      background: var(--primary);
+      color: white !important;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (min-width: 768px) {
+      .stat-number {
+        font-size: 2.2rem;
+      }
+    }
 
     /* Cards - Responsive */
-    .feature-card, .service-card, .testimonial-card, .blog-card, .pricing-card {
+    .feature-card,
+    .service-card,
+    .testimonial-card,
+    .blog-card,
+    .pricing-card {
       background: var(--card-bg);
       border-radius: 24px;
       padding: 20px;
@@ -311,68 +423,321 @@
       border: 1px solid var(--border-color);
       height: 100%;
     }
+
     @media (min-width: 768px) {
-      .feature-card, .service-card, .testimonial-card, .blog-card, .pricing-card { padding: 28px; border-radius: 32px; }
+
+      .feature-card,
+      .service-card,
+      .testimonial-card,
+      .blog-card,
+      .pricing-card {
+        padding: 28px;
+        border-radius: 32px;
+      }
     }
-    
-    .feature-card:hover, .service-card:hover, .blog-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow-lg); }
-    .feature-icon-wrap { width: 55px; height: 55px; background: var(--gradient-1); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.5rem; color: white; }
-    @media (min-width: 768px) { .feature-icon-wrap { width: 65px; height: 65px; font-size: 1.8rem; } }
-    
-    .pricing-card { padding: 24px 20px; }
-    @media (min-width: 768px) { .pricing-card { padding: 32px 24px; } }
-    .pricing-card.popular { border: 2px solid transparent; box-shadow: 0 20px 35px -12px rgba(99,102,241,0.3); position: relative; }
-    .popular-badge { position: absolute; top: 12px; right: 12px; background: var(--gradient-2); color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; }
-    @media (min-width: 768px) { .popular-badge { top: 16px; right: 20px; padding: 4px 14px; font-size: 0.7rem; } }
-    .price { font-size: 2.5rem; font-weight: 800; background: var(--gradient-3); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin: 12px 0; }
-    @media (min-width: 768px) { .price { font-size: 3rem; margin: 16px 0; } }
+
+    .feature-card:hover,
+    .service-card:hover,
+    .blog-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon-wrap {
+      width: 55px;
+      height: 55px;
+      background: var(--gradient-1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    @media (min-width: 768px) {
+      .feature-icon-wrap {
+        width: 65px;
+        height: 65px;
+        font-size: 1.8rem;
+      }
+    }
+
+    .pricing-card {
+      padding: 24px 20px;
+    }
+
+    @media (min-width: 768px) {
+      .pricing-card {
+        padding: 32px 24px;
+      }
+    }
+
+    .pricing-card.popular {
+      border: 2px solid transparent;
+      box-shadow: 0 20px 35px -12px rgba(99, 102, 241, 0.3);
+      position: relative;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--gradient-2);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    @media (min-width: 768px) {
+      .popular-badge {
+        top: 16px;
+        right: 20px;
+        padding: 4px 14px;
+        font-size: 0.7rem;
+      }
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 12px 0;
+    }
+
+    @media (min-width: 768px) {
+      .price {
+        font-size: 3rem;
+        margin: 16px 0;
+      }
+    }
 
     /* Testimonial Swiper */
-    .testimonial-card { text-align: center; padding: 24px; }
-    .testimonial-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.5rem; color: white; }
-    .swiper { padding: 16px 0 40px; overflow: visible; }
-    .swiper-pagination-bullet-active { background: var(--primary) !important; }
+    .testimonial-card {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gradient-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .swiper {
+      padding: 16px 0 40px;
+      overflow: visible;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--primary) !important;
+    }
 
     /* Blog Cards */
-    .blog-card img { width: 100%; border-radius: 20px; margin-bottom: 12px; aspect-ratio: 16/9; object-fit: cover; }
-    .blog-tag { display: inline-block; padding: 4px 12px; background: var(--gradient-1); color: white; border-radius: 30px; font-size: 0.7rem; margin-bottom: 10px; }
+    .blog-card img {
+      width: 100%;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .blog-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--gradient-1);
+      color: white;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      margin-bottom: 10px;
+    }
 
     /* Contact Form */
-    .glass-form { background: var(--card-bg); border-radius: 28px; padding: 24px; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
-    @media (min-width: 768px) { .glass-form { padding: 36px; border-radius: 40px; } }
-    .form-modern { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 20px; padding: 12px 18px; width: 100%; color: var(--text-primary); transition: all 0.2s; font-size: 0.9rem; }
-    .form-modern:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2); }
+    .glass-form {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (min-width: 768px) {
+      .glass-form {
+        padding: 36px;
+        border-radius: 40px;
+      }
+    }
+
+    .form-modern {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 12px 18px;
+      width: 100%;
+      color: var(--text-primary);
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .form-modern:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+    }
 
     /* Toast */
-    .toast-notify { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 50px; display: flex; gap: 10px; z-index: 9999; transition: transform 0.4s; box-shadow: var(--shadow-xl); font-size: 0.85rem; white-space: nowrap; }
-    @media (max-width: 480px) { .toast-notify { white-space: normal; max-width: 90%; text-align: center; } }
-    .toast-notify.show { transform: translateX(-50%) translateY(0); }
+    .toast-notify {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(150%);
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+      transition: transform 0.4s;
+      box-shadow: var(--shadow-xl);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .toast-notify {
+        white-space: normal;
+        max-width: 90%;
+        text-align: center;
+      }
+    }
+
+    .toast-notify.show {
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* Footer */
-    footer { background: var(--footer-bg); border-top: 1px solid var(--border-color); margin-top: 60px; padding: 40px 0 24px; }
-    @media (min-width: 768px) { footer { margin-top: 80px; padding: 50px 0 30px; } }
-    footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--primary); }
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border-color);
+      margin-top: 60px;
+      padding: 40px 0 24px;
+    }
+
+    @media (min-width: 768px) {
+      footer {
+        margin-top: 80px;
+        padding: 50px 0 30px;
+      }
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--primary);
+    }
 
     /* Animations */
-    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-up { animation: slideUp 0.5s ease forwards; }
-    .delay-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
-    .delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
-    .delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-up {
+      animation: slideUp 0.5s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
 
     /* Container fixes */
-    .container { padding-left: 16px; padding-right: 16px; width: 100%; max-width: 100%; }
-    @media (min-width: 576px) { .container { max-width: 540px; margin: 0 auto; } }
-    @media (min-width: 768px) { .container { max-width: 720px; } }
-    @media (min-width: 992px) { .container { max-width: 960px; } }
-    @media (min-width: 1200px) { .container { max-width: 1140px; } }
-    
-    .row { margin-left: -8px; margin-right: -8px; }
-    .row > [class*="col-"] { padding-left: 8px; padding-right: 8px; }
-    
+    .container {
+      padding-left: 16px;
+      padding-right: 16px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media (min-width: 576px) {
+      .container {
+        max-width: 540px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        max-width: 720px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        max-width: 960px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1140px;
+      }
+    }
+
+    .row {
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+
+    .row>[class*="col-"] {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
     /* Fix swiper overflow */
-    .swiper-wrapper { display: flex; }
+    .swiper-wrapper {
+      display: flex;
+    }
   </style>
 </head>
 
@@ -401,28 +766,48 @@
         <div class="row align-items-center g-4">
           <div class="col-lg-6">
             <div class="animate-up">
-              <h1 class="hero-title">Intelligent Theme <span style="background:var(--gradient-3); -webkit-background-clip:text;">Switching</span> for Modern Apps</h1>
-              <p class="fs-5 mt-3" style="color: var(--text-secondary);">Adaptive dark/light mode, smooth transitions, stunning animations, and perfect contrast across all devices.</p>
+              <h1 class="hero-title">Intelligent Theme <span
+                  style="background:var(--gradient-3); -webkit-background-clip:text;">Switching</span> for Modern Apps
+              </h1>
+              <p class="fs-5 mt-3" style="color: var(--text-secondary);">Adaptive dark/light mode, smooth transitions,
+                stunning animations, and perfect contrast across all devices.</p>
               <div class="d-flex gap-2 mt-4 flex-wrap">
-                <button class="btn-modern btn-primary-grad" id="demoMagicBtn"><i class="fas fa-bolt"></i> Try Demo</button>
+                <button class="btn-modern btn-primary-grad" id="demoMagicBtn"><i class="fas fa-bolt"></i> Try
+                  Demo</button>
                 <a href="#pricing" class="btn-modern btn-outline-glass"><i class="fas fa-crown"></i> Get Started</a>
               </div>
               <div class="d-flex gap-3 mt-4 flex-wrap justify-content-between justify-content-lg-start">
-                <div><div class="stat-number">15k+</div><div class="text-muted small">Active Users</div></div>
-                <div><div class="stat-number" id="satisfactionRate">94%</div><div class="text-muted small">Satisfaction</div></div>
-                <div><div class="stat-number">4.9</div><div class="text-muted small">Rating</div></div>
+                <div>
+                  <div class="stat-number">15k+</div>
+                  <div class="text-muted small">Active Users</div>
+                </div>
+                <div>
+                  <div class="stat-number" id="satisfactionRate">94%</div>
+                  <div class="text-muted small">Satisfaction</div>
+                </div>
+                <div>
+                  <div class="stat-number">4.9</div>
+                  <div class="text-muted small">Rating</div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="feature-card text-center animate-up delay-1">
-              <i class="fas fa-sliders-h" style="font-size: 3rem; background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;"></i>
+              <i class="fas fa-sliders-h"
+                style="font-size: 3rem; background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;"></i>
               <h3 class="mt-2 h4">Live Theme Sandbox</h3>
               <p class="text-muted small">Toggle theme and see realtime color shifts, gradients, perfect contrast.</p>
               <div class="row mt-3">
-                <div class="col-4"><i class="fas fa-moon fa-2x" style="color: var(--primary);"></i><p class="small mt-1 text-muted">Dark fusion</p></div>
-                <div class="col-4"><i class="fas fa-sun fa-2x" style="color: var(--secondary);"></i><p class="small mt-1 text-muted">Light aura</p></div>
-                <div class="col-4"><i class="fas fa-cloud-moon fa-2x" style="color: var(--accent);"></i><p class="small mt-1 text-muted">Auto sync</p></div>
+                <div class="col-4"><i class="fas fa-moon fa-2x" style="color: var(--primary);"></i>
+                  <p class="small mt-1 text-muted">Dark fusion</p>
+                </div>
+                <div class="col-4"><i class="fas fa-sun fa-2x" style="color: var(--secondary);"></i>
+                  <p class="small mt-1 text-muted">Light aura</p>
+                </div>
+                <div class="col-4"><i class="fas fa-cloud-moon fa-2x" style="color: var(--accent);"></i>
+                  <p class="small mt-1 text-muted">Auto sync</p>
+                </div>
               </div>
             </div>
           </div>
@@ -432,43 +817,156 @@
 
     <!-- Services Section -->
     <section id="services" class="container my-4 my-md-5 py-2 py-md-4">
-      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">🌟 Our Premium Services</h2><p class="text-muted">Comprehensive theming solutions for every need</p></div>
+      <div class="text-center mb-4 mb-md-5">
+        <h2 class="fw-bold h2">🌟 Our Premium Services</h2>
+        <p class="text-muted">Comprehensive theming solutions for every need</p>
+      </div>
       <div class="row g-3 g-md-4">
-        <div class="col-sm-6 col-lg-4"><div class="service-card animate-up"><div class="feature-icon-wrap"><i class="fas fa-paint-brush"></i></div><h4 class="h5">Custom Theme Design</h4><p class="text-muted small">Bespoke color schemes, typography, and visual identity tailored to your brand.</p></div></div>
-        <div class="col-sm-6 col-lg-4"><div class="service-card animate-up delay-1"><div class="feature-icon-wrap"><i class="fas fa-code"></i></div><h4 class="h5">Integration API</h4><p class="text-muted small">Seamless API integration for dynamic theme switching in any framework.</p></div></div>
-        <div class="col-sm-6 col-lg-4"><div class="service-card animate-up delay-2"><div class="feature-icon-wrap"><i class="fas fa-mobile-alt"></i></div><h4 class="h5">Responsive Solutions</h4><p class="text-muted small">Perfect theming across mobile, tablet, desktop with adaptive layouts.</p></div></div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="service-card animate-up">
+            <div class="feature-icon-wrap"><i class="fas fa-paint-brush"></i></div>
+            <h4 class="h5">Custom Theme Design</h4>
+            <p class="text-muted small">Bespoke color schemes, typography, and visual identity tailored to your brand.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="service-card animate-up delay-1">
+            <div class="feature-icon-wrap"><i class="fas fa-code"></i></div>
+            <h4 class="h5">Integration API</h4>
+            <p class="text-muted small">Seamless API integration for dynamic theme switching in any framework.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="service-card animate-up delay-2">
+            <div class="feature-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
+            <h4 class="h5">Responsive Solutions</h4>
+            <p class="text-muted small">Perfect theming across mobile, tablet, desktop with adaptive layouts.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="container my-4 my-md-5">
-      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">✨ Powerful Features</h2><p class="text-muted">Everything you need for perfect theme management</p></div>
+      <div class="text-center mb-4 mb-md-5">
+        <h2 class="fw-bold h2">✨ Powerful Features</h2>
+        <p class="text-muted">Everything you need for perfect theme management</p>
+      </div>
       <div class="row g-3 g-md-4">
-        <div class="col-sm-6 col-lg-4"><div class="feature-card animate-up"><div class="feature-icon-wrap"><i class="fas fa-moon-stars"></i></div><h4 class="h5">Adaptive Dark Mode</h4><p class="text-muted small">Deep contrast, eye-care palettes with dynamic transitions.</p></div></div>
-        <div class="col-sm-6 col-lg-4"><div class="feature-card animate-up delay-1"><div class="feature-icon-wrap"><i class="fas fa-chart-line"></i></div><h4 class="h5">System-Aware Sync</h4><p class="text-muted small">Respects OS preference & time of day automatically.</p></div></div>
-        <div class="col-sm-6 col-lg-4"><div class="feature-card animate-up delay-2"><div class="feature-icon-wrap"><i class="fas fa-database"></i></div><h4 class="h5">Persistent Memory</h4><p class="text-muted small">LocalStorage keeps your choice across visits.</p></div></div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-card animate-up">
+            <div class="feature-icon-wrap"><i class="fas fa-moon-stars"></i></div>
+            <h4 class="h5">Adaptive Dark Mode</h4>
+            <p class="text-muted small">Deep contrast, eye-care palettes with dynamic transitions.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-card animate-up delay-1">
+            <div class="feature-icon-wrap"><i class="fas fa-chart-line"></i></div>
+            <h4 class="h5">System-Aware Sync</h4>
+            <p class="text-muted small">Respects OS preference & time of day automatically.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="feature-card animate-up delay-2">
+            <div class="feature-icon-wrap"><i class="fas fa-database"></i></div>
+            <h4 class="h5">Persistent Memory</h4>
+            <p class="text-muted small">LocalStorage keeps your choice across visits.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Pricing Section -->
     <section id="pricing" class="container my-4 my-md-5 py-2 py-md-4">
-      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">Flexible Plans</h2><p class="text-muted">Choose the perfect plan for your needs</p></div>
+      <div class="text-center mb-4 mb-md-5">
+        <h2 class="fw-bold h2">Flexible Plans</h2>
+        <p class="text-muted">Choose the perfect plan for your needs</p>
+      </div>
       <div class="row g-3 g-md-4">
-        <div class="col-md-4"><div class="pricing-card animate-up"><h3 class="h4">Starter</h3><div class="price">$19<span style="font-size:1rem;">/mo</span></div><ul class="list-unstyled mt-3"><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Core themes</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> 5 color variants</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Community support</li></ul><button class="btn-modern btn-outline-glass w-100 mt-2 pricing-btn">Get started</button></div></div>
-        <div class="col-md-4"><div class="pricing-card popular animate-up delay-1"><div class="popular-badge"><i class="fas fa-fire"></i> POPULAR</div><h3 class="h4">Pro</h3><div class="price">$49<span style="font-size:1rem;">/mo</span></div><ul class="list-unstyled mt-3"><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Unlimited schemes</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Advanced API access</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Priority 24/7 support</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Custom animations</li></ul><button class="btn-modern btn-primary-grad w-100 mt-2 pricing-btn">Go Pro</button></div></div>
-        <div class="col-md-4"><div class="pricing-card animate-up delay-2"><h3 class="h4">Enterprise</h3><div class="price">$99<span style="font-size:1rem;">/mo</span></div><ul class="list-unstyled mt-3"><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> White-label theming</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Dedicated manager</li><li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> SLA guarantee</li></ul><button class="btn-modern btn-outline-glass w-100 mt-2 pricing-btn">Contact sales</button></div></div>
+        <div class="col-md-4">
+          <div class="pricing-card animate-up">
+            <h3 class="h4">Starter</h3>
+            <div class="price">$19<span style="font-size:1rem;">/mo</span></div>
+            <ul class="list-unstyled mt-3">
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Core themes</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> 5 color variants</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Community support</li>
+            </ul><button class="btn-modern btn-outline-glass w-100 mt-2 pricing-btn">Get started</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="pricing-card popular animate-up delay-1">
+            <div class="popular-badge"><i class="fas fa-fire"></i> POPULAR</div>
+            <h3 class="h4">Pro</h3>
+            <div class="price">$49<span style="font-size:1rem;">/mo</span></div>
+            <ul class="list-unstyled mt-3">
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Unlimited schemes</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Advanced API access</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Priority 24/7 support</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Custom animations</li>
+            </ul><button class="btn-modern btn-primary-grad w-100 mt-2 pricing-btn">Go Pro</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="pricing-card animate-up delay-2">
+            <h3 class="h4">Enterprise</h3>
+            <div class="price">$99<span style="font-size:1rem;">/mo</span></div>
+            <ul class="list-unstyled mt-3">
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> White-label theming</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> Dedicated manager</li>
+              <li class="mb-2 small"><i class="fas fa-check-circle text-success me-2"></i> SLA guarantee</li>
+            </ul><button class="btn-modern btn-outline-glass w-100 mt-2 pricing-btn">Contact sales</button>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="container my-4 my-md-5 py-2 py-md-4">
-      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">💬 What Our Clients Say</h2><p class="text-muted">Trusted by developers and designers worldwide</p></div>
+      <div class="text-center mb-4 mb-md-5">
+        <h2 class="fw-bold h2">💬 What Our Clients Say</h2>
+        <p class="text-muted">Trusted by developers and designers worldwide</p>
+      </div>
       <div class="swiper testimonialSwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"ThemeSwitchPro transformed our app's UX. The dark mode is flawless and the API is incredibly easy to integrate."</p><h5 class="mt-2 mb-0 h6">Sarah Johnson</h5><small class="text-muted">Lead Developer</small></div></div>
-          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"Best theme switching solution I've ever used. Smooth transitions and perfect accessibility across all devices."</p><h5 class="mt-2 mb-0 h6">Michael Chen</h5><small class="text-muted">Product Designer</small></div></div>
-          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"The auto-detection feature is brilliant. Our users love how it respects their system preferences."</p><h5 class="mt-2 mb-0 h6">Emily Rodriguez</h5><small class="text-muted">CTO, StartupHub</small></div></div>
-          <div class="swiper-slide"><div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3" style="color: var(--primary); opacity: 0.5;"></i><p class="text-muted small">"Incredible support team and regular updates. The gradient generator is a game-changer!"</p><h5 class="mt-2 mb-0 h6">David Kim</h5><small class="text-muted">Full Stack Engineer</small></div></div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3"
+                style="color: var(--primary); opacity: 0.5;"></i>
+              <p class="text-muted small">"ThemeSwitchPro transformed our app's UX. The dark mode is flawless and the
+                API is incredibly easy to integrate."</p>
+              <h5 class="mt-2 mb-0 h6">Sarah Johnson</h5><small class="text-muted">Lead Developer</small>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3"
+                style="color: var(--primary); opacity: 0.5;"></i>
+              <p class="text-muted small">"Best theme switching solution I've ever used. Smooth transitions and perfect
+                accessibility across all devices."</p>
+              <h5 class="mt-2 mb-0 h6">Michael Chen</h5><small class="text-muted">Product Designer</small>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3"
+                style="color: var(--primary); opacity: 0.5;"></i>
+              <p class="text-muted small">"The auto-detection feature is brilliant. Our users love how it respects their
+                system preferences."</p>
+              <h5 class="mt-2 mb-0 h6">Emily Rodriguez</h5><small class="text-muted">CTO, StartupHub</small>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar"><i class="fas fa-user"></i></div><i class="fas fa-quote-left mb-3"
+                style="color: var(--primary); opacity: 0.5;"></i>
+              <p class="text-muted small">"Incredible support team and regular updates. The gradient generator is a
+                game-changer!"</p>
+              <h5 class="mt-2 mb-0 h6">David Kim</h5><small class="text-muted">Full Stack Engineer</small>
+            </div>
+          </div>
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -476,19 +974,62 @@
 
     <!-- Blog Section -->
     <section id="blog" class="container my-4 my-md-5 py-2 py-md-4">
-      <div class="text-center mb-4 mb-md-5"><h2 class="fw-bold h2">📝 Latest from Blog</h2><p class="text-muted">Insights, tutorials, and updates</p></div>
+      <div class="text-center mb-4 mb-md-5">
+        <h2 class="fw-bold h2">📝 Latest from Blog</h2>
+        <p class="text-muted">Insights, tutorials, and updates</p>
+      </div>
       <div class="row g-3 g-md-4">
-        <div class="col-md-4"><div class="blog-card animate-up"><img src="https://picsum.photos/400/250?random=1" alt="Blog"><span class="blog-tag">Tutorial</span><h4 class="h5">Mastering Dark Mode Design</h4><p class="text-muted small">Learn best practices for implementing perfect dark mode.</p><a href="#" class="text-primary small" style="text-decoration: none;">Read more →</a></div></div>
-        <div class="col-md-4"><div class="blog-card animate-up delay-1"><img src="https://picsum.photos/400/250?random=2" alt="Blog"><span class="blog-tag">Tips</span><h4 class="h5">10 Accessibility Tips for Theming</h4><p class="text-muted small">Ensure your themes are accessible to all users.</p><a href="#" class="text-primary small" style="text-decoration: none;">Read more →</a></div></div>
-        <div class="col-md-4"><div class="blog-card animate-up delay-2"><img src="https://picsum.photos/400/250?random=3" alt="Blog"><span class="blog-tag">Update</span><h4 class="h5">New Features in v3.0</h4><p class="text-muted small">Explore the latest enhancements and improvements.</p><a href="#" class="text-primary small" style="text-decoration: none;">Read more →</a></div></div>
+        <div class="col-md-4">
+          <div class="blog-card animate-up"><img src="https://picsum.photos/400/250?random=1" alt="Blog"><span
+              class="blog-tag">Tutorial</span>
+            <h4 class="h5">Mastering Dark Mode Design</h4>
+            <p class="text-muted small">Learn best practices for implementing perfect dark mode.</p><a href="#"
+              class="text-primary small" style="text-decoration: none;">Read more →</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="blog-card animate-up delay-1"><img src="https://picsum.photos/400/250?random=2" alt="Blog"><span
+              class="blog-tag">Tips</span>
+            <h4 class="h5">10 Accessibility Tips for Theming</h4>
+            <p class="text-muted small">Ensure your themes are accessible to all users.</p><a href="#"
+              class="text-primary small" style="text-decoration: none;">Read more →</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="blog-card animate-up delay-2"><img src="https://picsum.photos/400/250?random=3" alt="Blog"><span
+              class="blog-tag">Update</span>
+            <h4 class="h5">New Features in v3.0</h4>
+            <p class="text-muted small">Explore the latest enhancements and improvements.</p><a href="#"
+              class="text-primary small" style="text-decoration: none;">Read more →</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="container my-4 my-md-5">
       <div class="row g-4 align-items-center">
-        <div class="col-lg-6"><div class="glass-form animate-up"><h3 class="mb-3 h4"><i class="fas fa-comment-dots me-2"></i> Get in Touch</h3><form id="contactFormPro"><div class="mb-3"><input type="text" class="form-modern" placeholder="Full name" required></div><div class="mb-3"><input type="email" class="form-modern" placeholder="Email address" required></div><div class="mb-3"><textarea rows="4" class="form-modern" placeholder="Your message" required></textarea></div><button type="submit" class="btn-modern btn-primary-grad w-100"><i class="fas fa-paper-plane"></i> Send Message</button></form></div></div>
-        <div class="col-lg-6"><div class="feature-card text-center p-4 p-md-5 animate-up delay-1"><i class="fas fa-headset fa-3x" style="color: var(--primary);"></i><h4 class="mt-3 h5">24/7 Support</h4><p class="text-muted small">Our team is always here to help</p><div class="small"><i class="fas fa-envelope me-2"></i> support@themeswitch.pro</div><div class="mt-2 small"><i class="fas fa-phone me-2"></i> +1 (555) 789-0123</div></div></div>
+        <div class="col-lg-6">
+          <div class="glass-form animate-up">
+            <h3 class="mb-3 h4"><i class="fas fa-comment-dots me-2"></i> Get in Touch</h3>
+            <form id="contactFormPro">
+              <div class="mb-3"><input type="text" class="form-modern" placeholder="Full name" required></div>
+              <div class="mb-3"><input type="email" class="form-modern" placeholder="Email address" required></div>
+              <div class="mb-3"><textarea rows="4" class="form-modern" placeholder="Your message" required></textarea>
+              </div><button type="submit" class="btn-modern btn-primary-grad w-100"><i class="fas fa-paper-plane"></i>
+                Send Message</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="feature-card text-center p-4 p-md-5 animate-up delay-1"><i class="fas fa-headset fa-3x"
+              style="color: var(--primary);"></i>
+            <h4 class="mt-3 h5">24/7 Support</h4>
+            <p class="text-muted small">Our team is always here to help</p>
+            <div class="small"><i class="fas fa-envelope me-2"></i> support@themeswitch.pro</div>
+            <div class="mt-2 small"><i class="fas fa-phone me-2"></i> +1 (555) 789-0123</div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -496,20 +1037,48 @@
   <footer>
     <div class="container">
       <div class="row g-4">
-        <div class="col-lg-5"><div class="d-flex gap-2 align-items-center"><i class="fas fa-palette fa-2x" style="color: var(--primary);"></i><h4 class="mb-0 h5">ThemeSwitchPro</h4></div><p class="mt-2 text-muted small">Intelligent theming engine for modern web — elevate user experience.</p></div>
-        <div class="col-6 col-md-3 col-lg-2"><h5 class="h6">Product</h5><ul class="list-unstyled small"><li class="mb-2"><a href="#features">Features</a></li><li class="mb-2"><a href="#pricing">Pricing</a></li><li class="mb-2"><a href="#services">Services</a></li></ul></div>
-        <div class="col-6 col-md-3 col-lg-2"><h5 class="h6">Resources</h5><ul class="list-unstyled small"><li class="mb-2"><a href="#blog">Blog</a></li><li class="mb-2"><a href="#">Docs</a></li><li class="mb-2"><a href="#">API</a></li></ul></div>
-        <div class="col-md-6 col-lg-3"><h5 class="h6">Subscribe</h5><div class="d-flex gap-2"><input type="email" class="form-modern" placeholder="Email" style="border-radius: 50px; font-size: 0.85rem; padding: 8px 14px;" id="subscribeEmail"><button class="btn-modern btn-primary-grad" id="subscribeBtn" style="border-radius: 50px; padding: 8px 16px; font-size: 0.8rem;">Join</button></div></div>
+        <div class="col-lg-5">
+          <div class="d-flex gap-2 align-items-center"><i class="fas fa-palette fa-2x"
+              style="color: var(--primary);"></i>
+            <h4 class="mb-0 h5">ThemeSwitchPro</h4>
+          </div>
+          <p class="mt-2 text-muted small">Intelligent theming engine for modern web — elevate user experience.</p>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <h5 class="h6">Product</h5>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="#features">Features</a></li>
+            <li class="mb-2"><a href="#pricing">Pricing</a></li>
+            <li class="mb-2"><a href="#services">Services</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <h5 class="h6">Resources</h5>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="#blog">Blog</a></li>
+            <li class="mb-2"><a href="#">Docs</a></li>
+            <li class="mb-2"><a href="#">API</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <h5 class="h6">Subscribe</h5>
+          <div class="d-flex gap-2"><input type="email" class="form-modern" placeholder="Email"
+              style="border-radius: 50px; font-size: 0.85rem; padding: 8px 14px;" id="subscribeEmail"><button
+              class="btn-modern btn-primary-grad" id="subscribeBtn"
+              style="border-radius: 50px; padding: 8px 16px; font-size: 0.8rem;">Join</button></div>
+        </div>
       </div>
-      <hr class="mt-4"><div class="text-center small text-muted">© 2025 ThemeSwitch Pro — Intelligent Theme Experience</div>
+      <hr class="mt-4">
+      <div class="text-center small text-muted">© 2025 ThemeSwitch Pro — Intelligent Theme Experience</div>
     </div>
   </footer>
 
-  <div class="toast-notify" id="globalToast"><i class="fas fa-sparkle" style="color: var(--success);"></i><span id="toastMsg">Theme toggled</span></div>
+  <div class="toast-notify" id="globalToast"><i class="fas fa-sparkle" style="color: var(--success);"></i><span
+      id="toastMsg">Theme toggled</span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    (function() {
+    (function () {
       const body = document.body;
       const themeBtn = document.getElementById('themeToggleBtn');
       const demoMagic = document.getElementById('demoMagicBtn');
@@ -547,7 +1116,7 @@
 
       // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
           if (href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         });
