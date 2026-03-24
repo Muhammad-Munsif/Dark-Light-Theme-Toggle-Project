@@ -1,4 +1,4 @@
- <script>
+
     (function () {
       const body = document.body;
       const themeBtn = document.getElementById('themeToggleBtn');
@@ -65,4 +65,3 @@
       // Swiper
       new Swiper('.testimonialSwiper', { slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: { delay: 4000, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true }, breakpoints: { 640: { slidesPerView: 2, spaceBetween: 20 }, 1024: { slidesPerView: 3, spaceBetween: 24 } } });
     })();
-  </script>
