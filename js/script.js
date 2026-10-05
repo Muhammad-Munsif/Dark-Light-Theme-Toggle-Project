@@ -5,18 +5,18 @@
   /* ----------------------------------------------------------
      References
      ---------------------------------------------------------- */
-  const root       = document.documentElement;
-  const THEME_KEY  = 'lumora-theme';
+  const root = document.documentElement;
+  const THEME_KEY = 'lumora-theme';
 
   const themeToggle = document.getElementById('themeToggle');
-  const metaTheme   = document.getElementById('metaTheme');
-  const menuBtn     = document.getElementById('menuBtn');
-  const navMenu     = document.getElementById('navMenu');
-  const navbar      = document.getElementById('navbar');
-  const toTop       = document.getElementById('toTop');
-  const toast       = document.getElementById('toast');
-  const toastMsg    = document.getElementById('toastMsg');
-  const toastIcon   = document.getElementById('toastIcon');
+  const metaTheme = document.getElementById('metaTheme');
+  const menuBtn = document.getElementById('menuBtn');
+  const navMenu = document.getElementById('navMenu');
+  const navbar = document.getElementById('navbar');
+  const toTop = document.getElementById('toTop');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  const toastIcon = document.getElementById('toastIcon');
 
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -68,7 +68,7 @@
   // Follow the OS only while the user hasn't made an explicit choice
   function onSystemChange(e) {
     let hasPref = false;
-    try { hasPref = !!localStorage.getItem(THEME_KEY); } catch (err) {}
+    try { hasPref = !!localStorage.getItem(THEME_KEY); } catch (err) { }
     if (!hasPref) {
       const next = e.matches ? 'dark' : 'light';
       applyTheme(next, false);
@@ -89,7 +89,7 @@
   /* ----------------------------------------------------------
      Mobile navigation
      ---------------------------------------------------------- */
-  const OPEN_ICON  = '<i class="fa-solid fa-bars"></i>';
+  const OPEN_ICON = '<i class="fa-solid fa-bars"></i>';
   const CLOSE_ICON = '<i class="fa-solid fa-xmark"></i>';
 
   function openMenu() {
@@ -183,15 +183,15 @@
   const revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
 
   function runCounter(el) {
-    const target   = parseFloat(el.getAttribute('data-count')) || 0;
+    const target = parseFloat(el.getAttribute('data-count')) || 0;
     const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-    const suffix   = el.getAttribute('data-suffix') || '';
+    const suffix = el.getAttribute('data-suffix') || '';
     const duration = 1400;
-    const start    = performance.now();
+    const start = performance.now();
 
     function frame(now) {
       const progress = Math.min((now - start) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 3);
       el.textContent = (target * eased).toFixed(decimals) + suffix;
       if (progress < 1) requestAnimationFrame(frame);
     }
@@ -225,8 +225,8 @@
      Pricing: monthly / yearly toggle
      ---------------------------------------------------------- */
   const billingBtns = Array.prototype.slice.call(document.querySelectorAll('.bt-btn'));
-  const amounts     = Array.prototype.slice.call(document.querySelectorAll('.price-amount'));
-  const notes       = Array.prototype.slice.call(document.querySelectorAll('[data-note]'));
+  const amounts = Array.prototype.slice.call(document.querySelectorAll('.price-amount'));
+  const notes = Array.prototype.slice.call(document.querySelectorAll('[data-note]'));
 
   billingBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -283,13 +283,13 @@
   contactForm && contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const name    = contactForm.querySelector('#cName');
-    const email   = contactForm.querySelector('#cEmail');
+    const name = contactForm.querySelector('#cName');
+    const email = contactForm.querySelector('#cEmail');
     const message = contactForm.querySelector('#cMsg');
 
-    if (!name.value.trim())            { name.focus();    showToast('Please enter your name', 'fa-circle-exclamation'); return; }
+    if (!name.value.trim()) { name.focus(); showToast('Please enter your name', 'fa-circle-exclamation'); return; }
     if (!/^\S+@\S+\.\S+$/.test(email.value)) { email.focus(); showToast('Please enter a valid email', 'fa-circle-exclamation'); return; }
-    if (!message.value.trim())         { message.focus(); showToast('Please add a short message', 'fa-circle-exclamation'); return; }
+    if (!message.value.trim()) { message.focus(); showToast('Please add a short message', 'fa-circle-exclamation'); return; }
 
     showToast('Message sent — we\'ll be in touch soon', 'fa-paper-plane');
     contactForm.reset();
@@ -298,7 +298,7 @@
   /* ----------------------------------------------------------
      Newsletter
      ---------------------------------------------------------- */
-  const subscribeBtn   = document.getElementById('subscribeBtn');
+  const subscribeBtn = document.getElementById('subscribeBtn');
   const subscribeEmail = document.getElementById('subscribeEmail');
 
   function handleSubscribe() {
@@ -357,7 +357,7 @@
       pagination: { el: '.swiper-pagination', clickable: true },
       a11y: { enabled: true },
       breakpoints: {
-        640:  { slidesPerView: 2, spaceBetween: 20 },
+        640: { slidesPerView: 2, spaceBetween: 20 },
         1000: { slidesPerView: 3, spaceBetween: 24 }
       }
     });
