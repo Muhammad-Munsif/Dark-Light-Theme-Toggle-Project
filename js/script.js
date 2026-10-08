@@ -5,23 +5,23 @@
   /* =========================================================
      Refs & constants
      ========================================================= */
-  var root          = document.documentElement;
-  var THEME_KEY     = 'lumora-theme-mode';   // 'light' | 'dark' | 'system' | 'auto'
-  var ACCENT_KEY    = 'lumora-accent';
-  var RADIUS_KEY    = 'lumora-radius';
-  var FONT_KEY      = 'lumora-font-scale';
-  var RTL_KEY       = 'lumora-rtl';
-  var COOKIE_KEY    = 'lumora-cookie-ok';
+  var root = document.documentElement;
+  var THEME_KEY = 'lumora-theme-mode';   // 'light' | 'dark' | 'system' | 'auto'
+  var ACCENT_KEY = 'lumora-accent';
+  var RADIUS_KEY = 'lumora-radius';
+  var FONT_KEY = 'lumora-font-scale';
+  var RTL_KEY = 'lumora-rtl';
+  var COOKIE_KEY = 'lumora-cookie-ok';
 
-  var themeToggle   = document.getElementById('themeToggle');
-  var metaTheme     = document.getElementById('metaTheme');
-  var menuBtn       = document.getElementById('menuBtn');
-  var navMenu       = document.getElementById('navMenu');
-  var navbar        = document.getElementById('navbar');
-  var toTop         = document.getElementById('toTop');
-  var toTopRing     = document.getElementById('toTopRing');
-  var scrollBar     = document.getElementById('scrollBar');
-  var toastStack    = document.getElementById('toastStack');
+  var themeToggle = document.getElementById('themeToggle');
+  var metaTheme = document.getElementById('metaTheme');
+  var menuBtn = document.getElementById('menuBtn');
+  var navMenu = document.getElementById('navMenu');
+  var navbar = document.getElementById('navbar');
+  var toTop = document.getElementById('toTop');
+  var toTopRing = document.getElementById('toTopRing');
+  var scrollBar = document.getElementById('scrollBar');
+  var toastStack = document.getElementById('toastStack');
   var offlineBanner = document.getElementById('offlineBanner');
 
   var mq = window.matchMedia('(prefers-color-scheme: dark)');
@@ -29,13 +29,13 @@
   /* =========================================================
      Utilities
      ========================================================= */
-  function savePref(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
-  function readPref(key)      { try { return localStorage.getItem(key); } catch (e) { return null; } }
-  function removePref(key)    { try { localStorage.removeItem(key); } catch (e) {} }
+  function savePref(key, val) { try { localStorage.setItem(key, val); } catch (e) { } }
+  function readPref(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  function removePref(key) { try { localStorage.removeItem(key); } catch (e) { } }
 
   function haptic(ms) {
     if (navigator.vibrate && window.matchMedia('(pointer: coarse)').matches) {
-      try { navigator.vibrate(ms || 8); } catch (e) {}
+      try { navigator.vibrate(ms || 8); } catch (e) { }
     }
   }
 
@@ -43,21 +43,21 @@
      Toast stack — multiple toasts at once
      ========================================================= */
   var TOAST_ICON_CLASSES = {
-    check:   'fa-circle-check',
-    info:    'fa-circle-info',
-    warn:    'fa-triangle-exclamation',
-    error:   'fa-circle-exclamation',
-    sun:     'fa-sun',
-    moon:    'fa-moon',
-    sync:    'fa-circle-half-stroke',
-    bulb:    'fa-lightbulb',
-    rocket:  'fa-rocket',
-    heart:   'fa-heart',
-    copy:    'fa-clipboard-check',
+    check: 'fa-circle-check',
+    info: 'fa-circle-info',
+    warn: 'fa-triangle-exclamation',
+    error: 'fa-circle-exclamation',
+    sun: 'fa-sun',
+    moon: 'fa-moon',
+    sync: 'fa-circle-half-stroke',
+    bulb: 'fa-lightbulb',
+    rocket: 'fa-rocket',
+    heart: 'fa-heart',
+    copy: 'fa-clipboard-check',
     palette: 'fa-palette',
-    share:   'fa-share-nodes',
-    download:'fa-download',
-    wifi:    'fa-wifi'
+    share: 'fa-share-nodes',
+    download: 'fa-download',
+    wifi: 'fa-wifi'
   };
 
   function showToast(msg, iconName) {
@@ -113,7 +113,7 @@
     applyThemeMode(next, true);
     haptic(10);
     showToast(next === 'dark' ? 'Dark mode enabled' : 'Light mode enabled',
-              next === 'dark' ? 'moon' : 'sun');
+      next === 'dark' ? 'moon' : 'sun');
   }
 
   themeToggle && themeToggle.addEventListener('click', function () { toggleTheme(); });
@@ -218,7 +218,7 @@
   /* =========================================================
      MOBILE NAV
      ========================================================= */
-  var OPEN_ICON  = '<i class="fa-solid fa-bars"></i>';
+  var OPEN_ICON = '<i class="fa-solid fa-bars"></i>';
   var CLOSE_ICON = '<i class="fa-solid fa-xmark"></i>';
 
   function openMenu() {
@@ -279,11 +279,11 @@
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
 
   function runCounter(el) {
-    var target   = parseFloat(el.getAttribute('data-count')) || 0;
+    var target = parseFloat(el.getAttribute('data-count')) || 0;
     var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-    var suffix   = el.getAttribute('data-suffix') || '';
+    var suffix = el.getAttribute('data-suffix') || '';
     var duration = 1400;
-    var start    = performance.now();
+    var start = performance.now();
     function frame(now) {
       var p = Math.min((now - start) / duration, 1);
       var eased = 1 - Math.pow(1 - p, 3);
@@ -390,8 +390,8 @@
      PRICING TOGGLE
      ========================================================= */
   var billingBtns = Array.prototype.slice.call(document.querySelectorAll('.bt-btn'));
-  var amounts     = Array.prototype.slice.call(document.querySelectorAll('.price-amount'));
-  var notes       = Array.prototype.slice.call(document.querySelectorAll('[data-note]'));
+  var amounts = Array.prototype.slice.call(document.querySelectorAll('.price-amount'));
+  var notes = Array.prototype.slice.call(document.querySelectorAll('[data-note]'));
 
   billingBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -438,11 +438,11 @@
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name    = contactForm.querySelector('#cName');
-      var email   = contactForm.querySelector('#cEmail');
+      var name = contactForm.querySelector('#cName');
+      var email = contactForm.querySelector('#cEmail');
       var message = contactForm.querySelector('#cMsg');
 
-      if (!name.value.trim())    { name.focus();    showToast('Please enter your name', 'error'); return; }
+      if (!name.value.trim()) { name.focus(); showToast('Please enter your name', 'error'); return; }
       if (!/^\S+@\S+\.\S+$/.test(email.value)) { email.focus(); showToast('Please enter a valid email', 'error'); return; }
       if (!message.value.trim()) { message.focus(); showToast('Please add a short message', 'error'); return; }
 
@@ -454,7 +454,7 @@
   /* =========================================================
      NEWSLETTER
      ========================================================= */
-  var subscribeBtn   = document.getElementById('subscribeBtn');
+  var subscribeBtn = document.getElementById('subscribeBtn');
   var subscribeEmail = document.getElementById('subscribeEmail');
   function handleSubscribe() {
     if (!subscribeEmail) return;
@@ -502,7 +502,7 @@
       pagination: { el: '.swiper-pagination', clickable: true },
       a11y: { enabled: true },
       breakpoints: {
-        640:  { slidesPerView: 2, spaceBetween: 20 },
+        640: { slidesPerView: 2, spaceBetween: 20 },
         1000: { slidesPerView: 3, spaceBetween: 24 }
       }
     });
@@ -594,9 +594,9 @@
     ].join('\n')
   };
 
-  var codePre   = document.getElementById('codePre');
-  var codeTabs  = Array.prototype.slice.call(document.querySelectorAll('.showcase-tab'));
-  var copyBtn   = document.getElementById('copyCode');
+  var codePre = document.getElementById('codePre');
+  var codeTabs = Array.prototype.slice.call(document.querySelectorAll('.showcase-tab'));
+  var copyBtn = document.getElementById('copyCode');
 
   function renderCode(key) {
     if (!codePre || !SNIPPETS[key]) return;
@@ -640,7 +640,7 @@
     ripple.className = 'ripple';
     ripple.style.width = ripple.style.height = size + 'px';
     ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-    ripple.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
     btn.appendChild(ripple);
     setTimeout(function () { ripple.remove(); }, 700);
   });
@@ -658,11 +658,11 @@
         .filter(function (el) { return el.offsetParent !== null; });
       if (!items.length) { e.preventDefault(); return; }
       var first = items[0];
-      var last  = items[items.length - 1];
+      var last = items[items.length - 1];
       if (e.shiftKey) {
         if (document.activeElement === first) { e.preventDefault(); last.focus(); }
       } else {
-        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     }
     container.addEventListener('keydown', keyHandler);
@@ -677,17 +677,17 @@
   /* =========================================================
      THEME CUSTOMIZER PANEL
      ========================================================= */
-  var panel        = document.getElementById('customizerPanel');
-  var panelScrim   = document.getElementById('panelScrim');
-  var openBtn      = document.getElementById('openCustomizer');
-  var fabBtn       = document.getElementById('fabCustomizer');
-  var closeBtn     = document.getElementById('closeCustomizer');
-  var closeBtn2    = document.getElementById('closeCustomizer2');
-  var resetBtn     = document.getElementById('resetCustomizer');
-  var radiusRange  = document.getElementById('radiusRange');
-  var fontRange    = document.getElementById('fontRange');
-  var rtlSwitch    = document.getElementById('rtlSwitch');
-  var panelTrap    = null;
+  var panel = document.getElementById('customizerPanel');
+  var panelScrim = document.getElementById('panelScrim');
+  var openBtn = document.getElementById('openCustomizer');
+  var fabBtn = document.getElementById('fabCustomizer');
+  var closeBtn = document.getElementById('closeCustomizer');
+  var closeBtn2 = document.getElementById('closeCustomizer2');
+  var resetBtn = document.getElementById('resetCustomizer');
+  var radiusRange = document.getElementById('radiusRange');
+  var fontRange = document.getElementById('fontRange');
+  var rtlSwitch = document.getElementById('rtlSwitch');
+  var panelTrap = null;
 
   function openPanel() {
     if (!panel) return;
@@ -715,7 +715,7 @@
   }
 
   openBtn && openBtn.addEventListener('click', openPanel);
-  fabBtn  && fabBtn.addEventListener('click', openPanel);
+  fabBtn && fabBtn.addEventListener('click', openPanel);
   closeBtn && closeBtn.addEventListener('click', closePanel);
   closeBtn2 && closeBtn2.addEventListener('click', closePanel);
   panelScrim && panelScrim.addEventListener('click', closePanel);
@@ -780,66 +780,76 @@
   /* =========================================================
      COMMAND PALETTE
      ========================================================= */
-  var cmdScrim   = document.getElementById('cmdScrim');
+  var cmdScrim = document.getElementById('cmdScrim');
   var cmdPalette = document.getElementById('cmdPalette');
-  var cmdInput   = document.getElementById('cmdInput');
-  var cmdList    = document.getElementById('cmdList');
-  var cmdBtn     = document.getElementById('cmdBtn');
-  var cmdTrap    = null;
+  var cmdInput = document.getElementById('cmdInput');
+  var cmdList = document.getElementById('cmdList');
+  var cmdBtn = document.getElementById('cmdBtn');
+  var cmdTrap = null;
 
   var COMMANDS = [
-    { group: 'Navigate', label: 'Go to Home',         icon: 'fa-house',            action: function () { goTo('#home'); } },
-    { group: 'Navigate', label: 'Go to Services',     icon: 'fa-layer-group',      action: function () { goTo('#services'); } },
-    { group: 'Navigate', label: 'Go to Playground',   icon: 'fa-code',             action: function () { goTo('#playground'); } },
-    { group: 'Navigate', label: 'Go to Features',     icon: 'fa-star',             action: function () { goTo('#features'); } },
-    { group: 'Navigate', label: 'Go to Pricing',      icon: 'fa-gem',              action: function () { goTo('#pricing'); } },
-    { group: 'Navigate', label: 'Go to Compare',      icon: 'fa-scale-balanced',   action: function () { goTo('#compare'); } },
-    { group: 'Navigate', label: 'Go to Testimonials', icon: 'fa-comments',         action: function () { goTo('#testimonials'); } },
-    { group: 'Navigate', label: 'Go to FAQ',          icon: 'fa-circle-question',  action: function () { goTo('#faq'); } },
-    { group: 'Navigate', label: 'Go to Contact',      icon: 'fa-envelope',         action: function () { goTo('#contact'); } },
+    { group: 'Navigate', label: 'Go to Home', icon: 'fa-house', action: function () { goTo('#home'); } },
+    { group: 'Navigate', label: 'Go to Services', icon: 'fa-layer-group', action: function () { goTo('#services'); } },
+    { group: 'Navigate', label: 'Go to Playground', icon: 'fa-code', action: function () { goTo('#playground'); } },
+    { group: 'Navigate', label: 'Go to Features', icon: 'fa-star', action: function () { goTo('#features'); } },
+    { group: 'Navigate', label: 'Go to Pricing', icon: 'fa-gem', action: function () { goTo('#pricing'); } },
+    { group: 'Navigate', label: 'Go to Compare', icon: 'fa-scale-balanced', action: function () { goTo('#compare'); } },
+    { group: 'Navigate', label: 'Go to Testimonials', icon: 'fa-comments', action: function () { goTo('#testimonials'); } },
+    { group: 'Navigate', label: 'Go to FAQ', icon: 'fa-circle-question', action: function () { goTo('#faq'); } },
+    { group: 'Navigate', label: 'Go to Contact', icon: 'fa-envelope', action: function () { goTo('#contact'); } },
 
-    { group: 'Theme', label: 'Toggle light / dark',   icon: 'fa-circle-half-stroke', kbd: ['Alt','T'], action: toggleTheme },
-    { group: 'Theme', label: 'Light mode',            icon: 'fa-sun',              action: function () { applyThemeMode('light', true);  showToast('Light mode enabled', 'sun'); } },
-    { group: 'Theme', label: 'Dark mode',             icon: 'fa-moon',             action: function () { applyThemeMode('dark', true);   showToast('Dark mode enabled', 'moon'); } },
-    { group: 'Theme', label: 'Follow system theme',   icon: 'fa-circle-half-stroke', action: function () { applyThemeMode('system', true); showToast('Following system theme', 'sync'); } },
-    { group: 'Theme', label: 'Auto by time of day',   icon: 'fa-clock',            action: function () { applyThemeMode('auto', true);   showToast('Auto theme enabled', 'sync'); } },
-    { group: 'Theme', label: 'Open customizer',       icon: 'fa-sliders',          action: openPanel },
+    { group: 'Theme', label: 'Toggle light / dark', icon: 'fa-circle-half-stroke', kbd: ['Alt', 'T'], action: toggleTheme },
+    { group: 'Theme', label: 'Light mode', icon: 'fa-sun', action: function () { applyThemeMode('light', true); showToast('Light mode enabled', 'sun'); } },
+    { group: 'Theme', label: 'Dark mode', icon: 'fa-moon', action: function () { applyThemeMode('dark', true); showToast('Dark mode enabled', 'moon'); } },
+    { group: 'Theme', label: 'Follow system theme', icon: 'fa-circle-half-stroke', action: function () { applyThemeMode('system', true); showToast('Following system theme', 'sync'); } },
+    { group: 'Theme', label: 'Auto by time of day', icon: 'fa-clock', action: function () { applyThemeMode('auto', true); showToast('Auto theme enabled', 'sync'); } },
+    { group: 'Theme', label: 'Open customizer', icon: 'fa-sliders', action: openPanel },
 
-    { group: 'Accent', label: 'Indigo accent',  icon: 'fa-palette', action: function () { applyAccent('indigo',  true); showToast('Accent set to indigo',  'palette'); } },
-    { group: 'Accent', label: 'Violet accent',  icon: 'fa-palette', action: function () { applyAccent('violet',  true); showToast('Accent set to violet',  'palette'); } },
-    { group: 'Accent', label: 'Pink accent',    icon: 'fa-palette', action: function () { applyAccent('pink',    true); showToast('Accent set to pink',    'palette'); } },
+    { group: 'Accent', label: 'Indigo accent', icon: 'fa-palette', action: function () { applyAccent('indigo', true); showToast('Accent set to indigo', 'palette'); } },
+    { group: 'Accent', label: 'Violet accent', icon: 'fa-palette', action: function () { applyAccent('violet', true); showToast('Accent set to violet', 'palette'); } },
+    { group: 'Accent', label: 'Pink accent', icon: 'fa-palette', action: function () { applyAccent('pink', true); showToast('Accent set to pink', 'palette'); } },
     { group: 'Accent', label: 'Emerald accent', icon: 'fa-palette', action: function () { applyAccent('emerald', true); showToast('Accent set to emerald', 'palette'); } },
-    { group: 'Accent', label: 'Amber accent',   icon: 'fa-palette', action: function () { applyAccent('amber',   true); showToast('Accent set to amber',   'palette'); } },
-    { group: 'Accent', label: 'Sky accent',     icon: 'fa-palette', action: function () { applyAccent('sky',     true); showToast('Accent set to sky',     'palette'); } },
+    { group: 'Accent', label: 'Amber accent', icon: 'fa-palette', action: function () { applyAccent('amber', true); showToast('Accent set to amber', 'palette'); } },
+    { group: 'Accent', label: 'Sky accent', icon: 'fa-palette', action: function () { applyAccent('sky', true); showToast('Accent set to sky', 'palette'); } },
 
-    { group: 'Accessibility', label: 'Toggle RTL layout', icon: 'fa-language', action: function () {
+    {
+      group: 'Accessibility', label: 'Toggle RTL layout', icon: 'fa-language', action: function () {
         var now = readPref(RTL_KEY) === '1';
         applyRTL(!now, true);
         showToast(!now ? 'Right-to-left layout on' : 'Left-to-right layout', 'sync');
-    } },
-    { group: 'Accessibility', label: 'Increase font size', icon: 'fa-magnifying-glass-plus', action: function () {
+      }
+    },
+    {
+      group: 'Accessibility', label: 'Increase font size', icon: 'fa-magnifying-glass-plus', action: function () {
         var v = parseFloat(readPref(FONT_KEY) || '1');
         v = Math.min(1.25, v + 0.05);
         applyFontScale(v.toFixed(2), true);
         showToast('Font scale: ' + v.toFixed(2) + '×', 'sync');
-    } },
-    { group: 'Accessibility', label: 'Decrease font size', icon: 'fa-magnifying-glass-minus', action: function () {
+      }
+    },
+    {
+      group: 'Accessibility', label: 'Decrease font size', icon: 'fa-magnifying-glass-minus', action: function () {
         var v = parseFloat(readPref(FONT_KEY) || '1');
         v = Math.max(0.85, v - 0.05);
         applyFontScale(v.toFixed(2), true);
         showToast('Font scale: ' + v.toFixed(2) + '×', 'sync');
-    } },
-    { group: 'Accessibility', label: 'Reset font size', icon: 'fa-rotate-left', action: function () {
+      }
+    },
+    {
+      group: 'Accessibility', label: 'Reset font size', icon: 'fa-rotate-left', action: function () {
         applyFontScale('1', true);
         showToast('Font scale reset', 'sync');
-    } },
+      }
+    },
 
-    { group: 'Actions', label: 'Share this page',          icon: 'fa-share-nodes', action: function () { triggerShare(); } },
-    { group: 'Actions', label: 'Copy current URL',         icon: 'fa-link',        action: function () {
+    { group: 'Actions', label: 'Share this page', icon: 'fa-share-nodes', action: function () { triggerShare(); } },
+    {
+      group: 'Actions', label: 'Copy current URL', icon: 'fa-link', action: function () {
         copyText(location.href, function () { showToast('URL copied to clipboard', 'copy'); });
-    } },
-    { group: 'Actions', label: 'Show keyboard shortcuts',  icon: 'fa-keyboard',    action: openShortcuts },
-    { group: 'Actions', label: 'Scroll to top',            icon: 'fa-arrow-up',    action: function () { window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+      }
+    },
+    { group: 'Actions', label: 'Show keyboard shortcuts', icon: 'fa-keyboard', action: openShortcuts },
+    { group: 'Actions', label: 'Scroll to top', icon: 'fa-arrow-up', action: function () { window.scrollTo({ top: 0, behavior: 'smooth' }); } }
   ];
 
   var filtered = COMMANDS.slice();
@@ -870,10 +880,10 @@
         lastGroup = cmd.group;
       }
       html += '<button class="cmd-item' + (i === activeIdx ? ' active' : '') + '" type="button" data-i="' + i + '" role="option">'
-            + '<i class="fa-solid ' + cmd.icon + '"></i>'
-            + '<span class="cmd-item__label">' + cmd.label + '</span>'
-            + (cmd.kbd ? '<span class="cmd-item__kbd">' + cmd.kbd.map(function (k) { return '<kbd>' + k + '</kbd>'; }).join('') + '</span>' : '')
-            + '</button>';
+        + '<i class="fa-solid ' + cmd.icon + '"></i>'
+        + '<span class="cmd-item__label">' + cmd.label + '</span>'
+        + (cmd.kbd ? '<span class="cmd-item__kbd">' + cmd.kbd.map(function (k) { return '<kbd>' + k + '</kbd>'; }).join('') + '</span>' : '')
+        + '</button>';
     });
     cmdList.innerHTML = html;
 
@@ -931,8 +941,8 @@
     var q = cmdInput.value.trim().toLowerCase();
     filtered = q
       ? COMMANDS.filter(function (c) {
-          return (c.label + ' ' + c.group).toLowerCase().indexOf(q) !== -1;
-        })
+        return (c.label + ' ' + c.group).toLowerCase().indexOf(q) !== -1;
+      })
       : COMMANDS.slice();
     activeIdx = 0;
     renderCmdList();
@@ -961,7 +971,7 @@
      SHORTCUT HELP OVERLAY
      ========================================================= */
   var shortcutScrim = document.getElementById('shortcutScrim');
-  var shortcutBox   = document.getElementById('shortcutBox');
+  var shortcutBox = document.getElementById('shortcutBox');
   var closeShortcutsBtn = document.getElementById('closeShortcuts');
   var shortcutTrap = null;
 
@@ -1091,7 +1101,7 @@
       showToast('You\'re offline — cached content still works', 'wifi');
     }
   }
-  window.addEventListener('online',  function () { updateOnlineStatus(); showToast('Back online', 'check'); });
+  window.addEventListener('online', function () { updateOnlineStatus(); showToast('Back online', 'check'); });
   window.addEventListener('offline', updateOnlineStatus);
   updateOnlineStatus();
 
